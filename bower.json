@@ -1,0 +1,27 @@
+{
+  "name": "book2shareweb",
+  "description": "Página web con AngularJS",
+  "main": "index.html",
+  "authors": [
+    "Jonathan Collado",
+    "Joan Jerez",
+    "Sergi Galcerán",
+    "Iván González"
+  ],
+  "license": "GPL-3.0",
+  "homepage": "https://github.com/eaqp2016g2/Book2ShareWeb",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.2.0",
+    "angular": "^1.6.3",
+    "angular-route": "^1.6.3",
+    "bootstrap": "^3.3.7",
+    "angular-material": "^1.1.3"
+  }
+}

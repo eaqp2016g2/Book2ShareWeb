@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <title>Book2Share</title>
+    <meta content="text/html">
+    <style></style>
+    <!-- CSS -->
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../bower_components/angular-material/angular-material.css">
+  </head>
+  <body>
+  <div id="wrapper">
+    <div id="sidebar-wrapper">
+      <div ng-include="'views/leftsidenav.html'"></div>
+    </div>
+    <div id="page-content-wrapper" style="margin-left: 156px;">
+      <div class="container-fluid" style="padding:0!important;">
+        <div ng-view></div>
+      </div>
+    </div>
+  </div>
+  <!-- JS -->
+  <script src="./bower_components/angular/angular.js"></script>
+  <script src="./bower_components/angular-route/angular-route.js"></script>
+  <script src="./bower_components/angular-material/angular-material.js"></script>
+  <script src="./bower_components/jquery/dist/jquery.js"></script>
+  <script src="./bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  </body>
+</html>
