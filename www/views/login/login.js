@@ -1,7 +1,7 @@
 /**
  * Created by juan on 17/03/17.
  */
-var API = "http://localhost:3001/";
+var API = "http://localhost:3001/api/";
 
 angular.module('myApp.login', ['ngRoute'])
     .config(['$routeProvider', function ($routeProvider) {
