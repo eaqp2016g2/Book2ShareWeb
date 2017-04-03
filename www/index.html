@@ -1,28 +1,37 @@
 <html>
-  <head>
+<head>
     <title>Book2Share</title>
     <meta content="text/html">
     <style></style>
     <!-- CSS -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
-  </head>
-  <body>
-  <div id="wrapper">
-    <div id="sidebar-wrapper">
-      <div ng-include="'views/leftsidenav.html'"></div>
-    </div>
-    <div id="page-content-wrapper" style="margin-left: 156px;">
-      <div class="container-fluid" style="padding:0!important;">
-        <div ng-view></div>
-      </div>
-    </div>
-  </div>
-  <!-- JS -->
-  <script src="bower_components/angular/angular.js"></script>
-  <script src="bower_components/angular-route/angular-route.js"></script>
-  <script src="bower_components/angular-material/angular-material.js"></script>
-  <script src="bower_components/jquery/dist/jquery.js"></script>
-  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-  </body>
+</head>
+<body ng-app="myApp">
+<div ng-include="'views/header/header.html'"></div>
+<div ng-controller="AppCtrl" layout="column" style="height:500px;" ng-cloak>
+    <section layout="row" flex>
+        <div ng-include="'views/sidenav/leftsidenav.html'"></div>
+        <md-content flex layout-padding>
+            <div ng-view></div>
+        </md-content>
+        <div ng-include="'views/sidenav/rightsidenav.html'"></div>
+    </section>
+</div>
+<!-- JS -->
+
+
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-aria/angular-aria.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-material/angular-material.js"></script>
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+
+<script src="app.js"></script>
+<script src="views/settings/settings.js"></script>
+<script src="views/login/login.js"></script>
+<script src="views/sidenav/sidenav.js"></script>
+</body>
 </html>

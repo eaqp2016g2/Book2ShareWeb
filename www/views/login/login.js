@@ -12,6 +12,7 @@ angular.module('myApp.login', ['ngRoute'])
     }])
     .controller('LoginController', function ($scope, $http) {
 
+        $scope.newUser = {};
         $scope.register = function () {
             $http({
                 url: API + 'users/register',
@@ -27,33 +28,30 @@ angular.module('myApp.login', ['ngRoute'])
                             console.log("Ha fallat l'inici de sessió");
                         }
                     },
-                    function (response) {
-                        console.log('El correu electrònic està en ús' + response);
+                    function (error) {
+                        console.log('El correu electrònic està en ús' + error);
                     });
         };
+        $scope.existentUser = {};
+        $scope.login = function () {
 
-        // $scope.modificarPersona = function(newPersona) {
-        //     $http.put(API + 'users/' + $scope.newPersona._id, $scope.newPersona)
-        //         .then(function(response) {
-        //             $scope.newPersona = {};
-        //             $scope.personas = resposne.data;
-        //             $scope.selected = false;
-        //         }, function(error){
-        //             console.log('Error: ' + error.data);
-        //         });
-        // };
-        //
-        // $scope.borrarPersona = function(newPersona) {
-        //     $http.delete(API + 'users/' + $scope.newPersona._id)
-        //         .then(function(response) {
-        //             $scope.newPersona = {};
-        //             $scope.personas = response.data;
-        //             $scope.selected = false;
-        //         },function(error){
-        //             console.log('Error: ' + error.data);
-        //
-        //         });
-        // };
+            $http({
+                url: API + 'users/login',
+                method: "POST",
+                data: $scope.existentUser
 
-
+            })
+                .then(function (response) {
+                        if (response.data.success == true) {
+                            localStorage.setItem("fs_web_token", response.data.token);
+                            localStorage.setItem("fs_web_userdata", JSON.stringify(response.data.user));
+                            window.location.reload();
+                        } else {
+                            console.log("Ha fallat l'inici de sessió");
+                        }
+                    },
+                    function (error) {
+                        console.log(error);
+                    });
+        };
     });
