@@ -1,44 +1,50 @@
 /**
- * Created by juan on 17/03/17.
+ * Created by juan on 10/04/17.
  */
+
 var API = "http://localhost:3001/api/";
 
-angular.module('myApp.login', ['ngRoute'])
-    .config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/login', {
-            templateUrl: 'views/login/login.html',
-            controller: 'LoginController'
-        });
-    }])
-    .controller('LoginController', function ($scope, $http) {
+angular.module('myApp.login', ['ngMaterial'])
 
-        $scope.newUser = {};
-        $scope.register = function () {
-            $http({
-                url: API + 'users/register',
-                method: "POST",
-                data: $scope.newUser
+    .controller('LoginCtrl', function ($scope, $mdDialog, $http) {
+        $scope.status = '  ';
+        $scope.customFullscreen = false;
+
+        $scope.showAdvanced = function (ev) {
+            $mdDialog.show({
+                controller: DialogController,
+                templateUrl: 'views/login/login.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: true,
+                fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
             })
-                .then(function (response) {
-                        if (response.data.success == true) {
-                            localStorage.setItem("fs_web_token", response.data.token);
-                            localStorage.setItem("fs_web_userdata", JSON.stringify(response.data.user));
-                            window.location.reload();
-                        } else {
-                            console.log("Ha fallat l'inici de sessió");
-                        }
-                    },
-                    function (error) {
-                        console.log('El correu electrònic està en ús' + error);
-                    });
+                .then(function (answer) {
+                    $scope.status = 'You said the information was "' + answer + '".';
+                }, function () {
+                    $scope.status = 'You cancelled the dialog.';
+                });
         };
-        $scope.existentUser = {};
-        $scope.login = function () {
+        function DialogController($scope, $mdDialog) {
+            $scope.hide = function () {
+                $mdDialog.hide();
+            };
 
+            $scope.cancel = function () {
+                $mdDialog.cancel();
+            };
+
+            $scope.answer = function (answer) {
+                $mdDialog.hide(answer);
+            };
+        }
+
+        $scope.actualUser = {};
+        $scope.login = function () {
             $http({
                 url: API + 'users/login',
                 method: "POST",
-                data: $scope.existentUser
+                data: $scope.actualUser
 
             })
                 .then(function (response) {

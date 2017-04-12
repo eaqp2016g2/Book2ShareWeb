@@ -2,23 +2,27 @@
  * Created by juan on 19/03/17.
  */
 
-angular.module('myApp', ['ngRoute', 'myApp.login', 'myApp.sidenav', 'ngAnimate'])
+angular.module( 'myApp', ['ngRoute', 'myApp.login', 'myApp.sidenav', 'myApp.starter',
+                'myApp.register', 'myApp.portal',
+                'ngAnimate'])
     .config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
-        if ((localStorage.getItem('fs_web_token')) && (JSON.parse(localStorage.getItem('fs_web_userdata')) !== 'null')
-            && (JSON.parse(localStorage.getItem('fs_web_userdata')) !== null)) {
-            if (window.location.hash === '#!/login') {
+        //if ((localStorage.getItem('fs_web_token')) && (JSON.parse(localStorage.getItem('fs_web_userdata')) !== 'null')
+        //     && (JSON.parse(localStorage.getItem('fs_web_userdata')) !== null)) {
+        if (localStorage.getItem('fs_web_token')) {
+            console.log('L\'usuari ha iniciat sessió, redirigint al portal');
+            if ((window.location.hash === '#!/register') || (window.location === '#!/starter')) {
                 window.location = '#!/portal';
             }
             $routeProvider.otherwise({redirectTo: '/portal'});
         }
         else {
-            if ((window.location !== '#!/login') || (window.location !== '#!/signup')) {
+            if ((window.location !== '#!/register') || (window.location !== '#!/starter')) {
                 console.log('L\'usuari no ha iniciat sessió');
 
                 localStorage.removeItem('fs_web_token');
                 localStorage.removeItem('fs_web_userdata');
-                window.location = '#!/login';
-                $routeProvider.otherwise({redirectTo: '/login'});
+                window.location = '#!/starter';
+                $routeProvider.otherwise({redirectTo: '/starter'});
             }
         }
 

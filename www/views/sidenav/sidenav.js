@@ -65,7 +65,7 @@ angular.module('myApp.sidenav', ['ngRoute','ngMaterial', 'ngAnimate'])
             console.log('Usuari dins el portal');
         }
         else {
-            if (($window.location == "#!/login") || ($window.location == "#!/signup")) {
+            if (($window.location == "#!/register") || ($window.location == "#!/signup")) {
                 console.log("Usuari que no ha iniciat sessió");
                 $window.location = '/';
             }
