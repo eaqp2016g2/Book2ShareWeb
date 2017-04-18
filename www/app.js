@@ -3,7 +3,7 @@
  */
 
 angular.module( 'myApp', ['ngRoute', 'myApp.login', 'myApp.sidenav', 'myApp.starter',
-                'myApp.register', 'myApp.portal',
+                'myApp.register', 'myApp.portal', 'myApp.library',
                 'ngAnimate'])
     .config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
         //if ((localStorage.getItem('fs_web_token')) && (JSON.parse(localStorage.getItem('fs_web_userdata')) !== 'null')
