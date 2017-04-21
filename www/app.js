@@ -3,13 +3,13 @@
  */
 
 angular.module( 'myApp', ['ngRoute', 'myApp.login', 'myApp.sidenav', 'myApp.starter',
-                'myApp.register', 'myApp.portal', 'myApp.library',
+                'myApp.register', 'myApp.portal', 'myApp.library', 'myApp.profile',
                 'ngAnimate'])
-    .config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
+    .config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider, $scope) {
         //if ((localStorage.getItem('fs_web_token')) && (JSON.parse(localStorage.getItem('fs_web_userdata')) !== 'null')
         //     && (JSON.parse(localStorage.getItem('fs_web_userdata')) !== null)) {
         if (localStorage.getItem('fs_web_token')) {
-            console.log('L\'usuari ha iniciat sessió, redirigint al portal');
+            console.log('L\'usuari ha iniciat sessió, redirigint al portal');                      
             if ((window.location.hash === '#!/register') || (window.location === '#!/starter')) {
                 window.location = '#!/portal';
             }

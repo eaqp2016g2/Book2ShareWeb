@@ -12,6 +12,6 @@ angular.module('myApp.library', ['ngMaterial', 'ngRoute'])
         .then(function(response) {
 		$scope.libros = response.data;
 	}, function (error){
-                console.log('Error al obtener los alumnos: ' + error.data);
+                console.log('Error al obtener los libros: ' + error.data);
         });
 })

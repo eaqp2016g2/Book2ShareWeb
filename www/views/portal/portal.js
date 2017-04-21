@@ -13,6 +13,7 @@ angular.module('myApp.portal', ['ngRoute','ngMaterial'])
     }])
     .controller('SubheaderAppCtrl', function ($scope, $http) {
 
+        $scope.actualuser =  JSON.parse(localStorage.getItem("fs_web_userdata"));
         var imagePath = '../img/user-identity.svg';
         $scope.messages = [
             {
