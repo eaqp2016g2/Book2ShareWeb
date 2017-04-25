@@ -1,36 +1,24 @@
 <header id="mu-header" ng-controller="LoginCtrl" ng-cloak>
-    <nav class="navbar navbar-default mu-main-navbar" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <!-- FOR MOBILE VIEW COLLAPSED BUTTON -->
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                        data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <!-- LOGO -->
-                <!--  Image based logo  -->
-                <!-- <a class="navbar-brand" href="#mu-slider"><img src="logo.png" alt="Logo img"></a>-->
-                <!--  Text based logo  -->
-                <a class="navbar-brand" href="../../index.html"><span>Book2Share</span></a>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul   id="top-menu" class="nav navbar-nav navbar-right mu-main-nav">
-                    <li><a href="#!/users/"+ actualuser._id>Perfil</a></li>
-                    <li ng-hide="logged"><a href="#mu-slider">Inici</a></li>
-                    <li>
-                        <a href="#" ng-click="showAdvanced($event)"><b>Inicia sessió</b>                        
-                        </a>
-                    </li>
-                    <li ng-hide="logged">
-                    <a ng-href="#!/register"><b>Registra</b>
-                    </li>
-                </ul>
-                
-            </div><!--/.nav-collapse -->
-                       
+    <md-toolbar class="md-hue-2">
+        <div class="md-toolbar-tools">
+            <md-button class="md-icon-button" aria-label="Settings">
+                <md-icon md-svg-icon="../../img/ic_menu_24px.svg"></md-icon>
+            </md-button>
+
+            <h2 flex md-truncate ><a href="../../index.html">Book2Share</a></h2>
+
+            <!-- <md-button class="md-icon-button" aria-label="Favorite">
+                <md-icon md-svg-icon="img/icons/favorite.svg" style="color: greenyellow;"></md-icon>
+            </md-button> -->
+            <md-button href="#" ng-click="showAdvanced($event)" aria-label="Inicia sessió">
+                Inicia sessió
+            </md-button>
+            <md-button ng-href="#!/register" aria-label="Registra" ng-hide="logged">
+                Registra
+            </md-button>
+            <!-- <md-button class="md-icon-button" aria-label="More">
+                <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
+            </md-button> -->
         </div>
-    </nav>
+    </md-toolbar>
 </header>
