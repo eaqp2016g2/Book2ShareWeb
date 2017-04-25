@@ -6,14 +6,16 @@
     <!-- CSS -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
+    <!-- <link rel="stylesheet" href="views/messaging/speech-burbles.css"> -->
 </head>
 <body ng-app="myApp">
+<div ng-controller="AppCtrl" layout="column" ng-cloak>
 <div ng-include="'views/header/header.html'"></div>
-<div ng-controller="AppCtrl" layout="column" style="height:500px;" ng-cloak>
     <section layout="row" flex>
-        <div ng-include="'views/sidenav/leftsidenav.html'"></div>
+        <div ng-include="'views/sidenav/sidenav.html'"></div>
         <md-content flex layout-padding>
-            <div ng-view></div>
+            <div layout="column" layout-align="top center" ng-view></div>
+            <div flex></div>
         </md-content>
         <div ng-include="'views/sidenav/rightsidenav.html'"></div>
     </section>
@@ -30,11 +32,19 @@
 <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 
 <script src="app.js"></script>
-<script src="views/settings/settings.js"></script>
+<script src="views/book/book.js"></script>
+<script src="views/bookEdit/bookEdit.js"></script>
+<script src="views/library/library.js"></script>
 <script src="views/login/login.js"></script>
+<script src="views/header/header.js"></script>
+<script src="views/map/map.js"></script>
+<script src="views/messaging/messaging.js"></script>
+<script src="views/portal/portal.js"></script>
 <script src="views/register/register.js"></script>
+<script src="views/reviews/reviews.js"></script>
+<script src="views/settings/settings.js"></script>
 <script src="views/sidenav/sidenav.js"></script>
 <script src="views/starter/starter.js"></script>
-<script src="views/portal/portal.js"></script>
+
 </body>
 </html>

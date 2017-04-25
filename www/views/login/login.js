@@ -6,7 +6,7 @@ var API = "http://localhost:3001/api/";
 
 angular.module('myApp.login', ['ngMaterial'])
 
-    .controller('LoginCtrl', function ($scope, $mdDialog, $http) {
+    .controller('LoginCtrl', function ($scope, $mdDialog, $http, $window) {
         $scope.status = '  ';
         $scope.customFullscreen = false;
 
@@ -59,5 +59,11 @@ angular.module('myApp.login', ['ngMaterial'])
                     function (error) {
                         console.log(error);
                     });
+        };
+
+        $scope.logout = function () {
+            localStorage.removeItem("fs_web_token");
+            localStorage.removeItem("fs_web_userdata");
+            $window.location = "index.html";
         };
     });

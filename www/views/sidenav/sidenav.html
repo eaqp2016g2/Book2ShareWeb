@@ -1,0 +1,61 @@
+ <md-sidenav
+            class="md-sidenav-left"
+            md-component-id="left"
+            md-is-locked-open="$mdMedia('gt-md')"
+            md-whiteframe="4">
+
+        <md-toolbar class="md-theme-indigo">
+            <h1 class="md-toolbar-tools">Book2Share</h1>
+        </md-toolbar>
+        <md-content layout-padding ng-controller="LeftCtrl">
+            <!-- <md-button ng-click="close()" class="md-primary" hide-gt-md>
+                Close Sidenav Left
+            </md-button>
+            <p hide show-gt-md>
+                This sidenav is locked open on your device. To go back to the default behavior,
+                narrow your display.
+            </p> -->
+            <!-- Nuestros libros -->
+            <md-list-item class="md-1-line"  href="#!book">
+                <img ng-src="{{message.face}}" class="md-avatar" alt="book icon">
+                <div class="md-list-item-text">
+                    <h4>Els meus llibres</h4>
+                </div>
+            </md-list-item>
+            <!-- Búsqueda de libros -->
+            <md-list-item class="md-1-line"  href="#!library">
+                <img ng-src="{{message.face}}" class="md-avatar" alt="books">
+                <div class="md-list-item-text">
+                    <h4>Biblioteca</h4>
+                </div>
+            </md-list-item>
+            <!-- Acceso al mapa -->
+            <md-list-item class="md-1-line" href="#!map">
+                <img src="../../img/hisc-app-marble.svg" class="md-avatar" alt="map">
+                <div class="md-list-item-text">
+                    <h4>Mapa</h4>
+                </div>
+            </md-list-item>
+            <!-- Acceso a la mensajería -->
+            <md-list-item class="md-1-line" href="#!messaging">
+                <img src="../../img/mail-unread.svg" class="md-avatar" alt="mail">
+                <div class="md-list-item-text">
+                    <h4>Missatgeria</h4>
+                </div>
+            </md-list-item>
+            <!-- Acceso a configuración de usuario -->
+            <md-list-item class="md-1-line" href="#!settings">
+                <img src="../../img/preferences-other.svg" class="md-avatar" alt="preferences">
+                <div class="md-list-item-text">
+                    <h4>Configuració</h4>
+                </div>
+            </md-list-item>
+            <!-- Logout -->
+            <md-list-item class="md-1-line" ng-controller="LoginCtrl" ng-click="logout()">
+                <img src="../../img/system-shutdown.svg" class="md-avatar" alt="sign out">
+                <div class="md-list-item-text">
+                    <h4>Tanca sessió</h4>
+                </div>
+            </md-list-item>
+        </md-content>
+    </md-sidenav>
