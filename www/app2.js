@@ -1,5 +1,5 @@
 
-angular.module('myApp', ['ui.router','myApp.starter', 'myApp.portal', 'myApp.login', 'myApp.register', 'myApp.library', 'myApp.profile', 'myApp.sidenav'])
+angular.module('myApp', ['ui.router','myApp.starter', 'myApp.portal', 'myApp.login', 'myApp.register', 'myApp.library', 'myApp.profile'])
 
 .run(['$rootScope', '$state','$stateParams',
 function($rootScope, $state, $stateParams){
