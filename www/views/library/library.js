@@ -14,4 +14,4 @@ angular.module('myApp.library', ['ngMaterial', 'ngRoute'])
 	}, function (error){
                 console.log('Error al obtener los libros: ' + error.data);
         });
-})
+});
