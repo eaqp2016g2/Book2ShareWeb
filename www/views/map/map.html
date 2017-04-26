@@ -1,10 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<ng-map zoom="8" center="[40.74, -74.18]" default-style="true">
 
-</body>
-</html>
+    <custom-marker ng-repeat="p in vm.positions track by $index"
+                   id="custom-marker-{{$index}}"
+                   on-click="vm.map.showInfoWindow('foo', 'custom-marker-'+$index)"
+                   position="{{p.pos}}">
+        <div>
+            position {{p.name}}: {{p.pos[0]}}, {{p.pos[1]}}
+        </div>
+    </custom-marker>
+
+    <info-window id="foo" on-mouseover="vm.mouseover()">
+        <div ng-non-bindable="">
+            Lat: {{anchor.getPosition().lat()}}<br/>
+            Lng: {{anchor.getPosition().lng()}}<br/>
+        </div>
+    </info-window>
+
+</ng-map>

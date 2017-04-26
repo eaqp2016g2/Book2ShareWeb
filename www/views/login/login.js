@@ -3,7 +3,6 @@
  */
 
 var API = "http://localhost:3001/api/";
-var userlog;
 
 angular.module('myApp.login', ['ngMaterial','ui.router'])
 
@@ -64,11 +63,16 @@ angular.module('myApp.login', ['ngMaterial','ui.router'])
                         console.log(error);
                     });
         };
+
         $scope.logout = function(){
             localStorage.removeItem("fs_web_token");
             localStorage.removeItem("fs_web_userdata");
+<<<<<<< HEAD
             $state.go("starter") 
             $rootScope.userlogged={};
+=======
+            //$window.location="index.html";
+>>>>>>> refs/remotes/origin/master
             $rootScope.logged=false;
         };
     });

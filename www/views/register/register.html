@@ -2,6 +2,10 @@
             <form>
                 <md-content class="md-padding">
                     <md-input-container class="md-block">
+                        <label>Nom</label>
+                        <input ng-model="newUser.name" required>
+                    </md-input-container>
+                    <md-input-container class="md-block">
                         <label>Correu electrònic</label>
                         <input ng-model="newUser.email" required>
                     </md-input-container>
@@ -10,8 +14,8 @@
                         <input ng-model="newUser.password" type="password" required>
                     </md-input-container>
                     <md-input-container class="md-block">
-                        <label>Nom</label>
-                        <input ng-model="newUser.name" required>
+                        <label>Repeteix la contrasenya</label>
+                        <input ng-model="newUser.password" type="password" required>
                     </md-input-container>
                     <md-card-actions layout="row" layout-align="end center">
                         <md-button ng-click="register()" class="md-raised md-primary">Confirma</md-button>
