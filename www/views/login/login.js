@@ -4,13 +4,11 @@
 
 var API = "http://localhost:3001/api/";
 
-angular.module('myApp.login', ['ngMaterial'])
+angular.module('myApp.login', ['ngMaterial','ui.router'])
 
-    .controller('LoginCtrl', function ($scope, $mdDialog, $http, $window, $rootScope) {
+    .controller('LoginCtrl', function ($scope, $mdDialog, $http, $window, $rootScope, $state) {
         $scope.status = '  ';
-        $scope.customFullscreen = false;     
-        $rootScope.logged = false;
-        
+        $scope.customFullscreen = false;
         $scope.showAdvanced = function (ev) {
             $mdDialog.show({
                 controller: DialogController,
@@ -40,7 +38,7 @@ angular.module('myApp.login', ['ngMaterial'])
             };
         }
 
-        $scope.actualUser = {};
+        $scope.actualUser={};             
         $scope.login = function () {
             $http({
                 url: API + '/users/login',
@@ -49,12 +47,13 @@ angular.module('myApp.login', ['ngMaterial'])
 
             })
                 .then(function (response) {
-                        if (response.data.success == true) {
+                        if (response.data.success == true) {                 
                             localStorage.setItem("fs_web_token", response.data.token);
-                            localStorage.setItem("fs_web_userdata", JSON.stringify(response.data.user)); 
-                            $scope.actualuser =  JSON.parse(localStorage.getItem("fs_web_userdata"));                                                   
-                            window.location.reload();
+                            localStorage.setItem("fs_web_userdata", JSON.stringify(response.data.user));                                                                                   
+                            //console.log('user2', $scope.userlogged)
+                            $state.go("portal")
                             $rootScope.logged= true;
+                            $rootScope.userlogged =  JSON.parse(localStorage.getItem("fs_web_userdata"));
                             
                         } else {
                             console.log("Ha fallat l'inici de sessió");
@@ -68,7 +67,8 @@ angular.module('myApp.login', ['ngMaterial'])
         $scope.logout = function(){
             localStorage.removeItem("fs_web_token");
             localStorage.removeItem("fs_web_userdata");
-            //$window.location="index.html";
+            $state.go("starter") 
+            $rootScope.userlogged={};
             $rootScope.logged=false;
         };
     });

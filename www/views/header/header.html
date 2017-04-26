@@ -1,8 +1,11 @@
+<header id="mu-header" ng-controller="LoginCtrl" ng-cloak>  
+    <nav class="navbar navbar-default mu-main-navbar" role="navigation">
+        
+                       
 <header id="mu-header" ng-controller="LoginCtrl" ng-cloak>
     <md-toolbar class="md-hue-2">
         <div class="md-toolbar-tools">
             <md-button class="md-icon-button" aria-label="Settings">
-                <md-icon md-svg-icon="../../img/ic_menu_24px.svg"></md-icon>
             </md-button>
 
             <h2 flex md-truncate ><a href="../../index.html">Book2Share</a></h2>
@@ -10,11 +13,14 @@
             <!-- <md-button class="md-icon-button" aria-label="Favorite">
                 <md-icon md-svg-icon="img/icons/favorite.svg" style="color: greenyellow;"></md-icon>
             </md-button> -->
-            <md-button href="#" ng-click="showAdvanced($event)" aria-label="Inicia sessió">
+            <md-button ng-hide="logged" href="#" ng-click="showAdvanced($event)" aria-label="Inicia sessió">
                 Inicia sessió
             </md-button>
             <md-button ng-href="#!/register" aria-label="Registra" ng-hide="logged">
                 Registra
+            </md-button>
+            <md-button ng-hide="!logged" href="#" ng-click="logout()" aria-label="Tanca sessió">
+                Tanca sessió
             </md-button>
             <!-- <md-button class="md-icon-button" aria-label="More">
                 <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
