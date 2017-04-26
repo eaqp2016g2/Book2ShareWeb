@@ -67,12 +67,8 @@ angular.module('myApp.login', ['ngMaterial','ui.router'])
         $scope.logout = function(){
             localStorage.removeItem("fs_web_token");
             localStorage.removeItem("fs_web_userdata");
-<<<<<<< HEAD
             $state.go("starter") 
             $rootScope.userlogged={};
-=======
-            //$window.location="index.html";
->>>>>>> refs/remotes/origin/master
             $rootScope.logged=false;
         };
     });
