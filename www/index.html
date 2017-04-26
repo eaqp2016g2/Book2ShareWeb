@@ -9,13 +9,13 @@
 </head>
 <body ng-app="myApp">
 <div ng-include="'views/header/header.html'"></div>
-<div ng-controller="AppCtrl" layout="column" style="height:500px;" ng-cloak>
+<div ng-controller="StarterController" layout="column" style="height:500px;" ng-cloak>
     <section layout="row" flex>
-        <div ng-include="'views/sidenav/leftsidenav.html'"></div>
+        <!--div ng-include="'views/sidenav/leftsidenav.html'"></div-->
         <md-content flex layout-padding>
-            <div ng-view></div>
+            <div ui-view></div>
         </md-content>
-        <div ng-include="'views/sidenav/rightsidenav.html'"></div>
+        <!--div ui-include="'views/sidenav/rightsidenav.html'"></div-->
     </section>
 </div>
 <!-- JS -->
@@ -26,17 +26,18 @@
 <script src="bower_components/angular-animate/angular-animate.js"></script>
 <script src="bower_components/angular-aria/angular-aria.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.4.2/angular-ui-router.js"></script>
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 
-<script src="app.js"></script>
+<script src="app2.js"></script>
 <script src="views/settings/settings.js"></script>
 <script src="views/login/login.js"></script>
 <script src="views/library/library.js"></script>
 <script src="views/register/register.js"></script>
-<script src="views/sidenav/sidenav.js"></script>
-<script src="views/starter/starter.js"></script>
-<script src="views/portal/portal.js"></script>
-<script src="views/profile/profile.js"></script>
+<script src="views/sidenav/sid.js"></script>
+<script src="views/starter/starter2.js"></script>
+<script src="views/portal/portal2.js"></script>
+<script src="views/profile/profile2.js"></script>
 </body>
 </html>

@@ -1,8 +1,10 @@
-var API = "http://localhost:3001";
+var API = "http://localhost:3001/api";
 
-angular.module('myApp.library', ['ngMaterial', 'ngRoute'])
-.config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/library', {
+angular.module('myApp.library', ['ngMaterial', 'ui.router'])
+.config(['$stateProvider', function ($stateProvider) {
+        $stateProvider
+        .state('library', {
+            url: '/library',
             templateUrl: 'views/library/library.html',
             controller: 'libCtrl'
         });
