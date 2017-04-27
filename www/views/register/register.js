@@ -5,8 +5,7 @@ var API = "http://localhost:3001/api/";
 
 angular.module('myApp.register', ['ui.router'])
     .config(['$stateProvider', function ($stateProvider) {
-        $stateProvider
-        .state('register', {
+        $stateProvider.state('register', {
             url: '/register',
             templateUrl: 'views/register/register.html',
             controller: 'RegisterController'

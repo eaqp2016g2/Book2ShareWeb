@@ -50,11 +50,11 @@ angular.module('myApp.login', ['ngMaterial','ui.router'])
                         if (response.data.success == true) {                 
                             localStorage.setItem("fs_web_token", response.data.token);
                             localStorage.setItem("fs_web_userdata", JSON.stringify(response.data.user));                                                                                   
-                            //console.log('user2', $scope.userlogged)
+                            //console.log('user2', $scope.userdata)
+                            $mdDialog.hide();
                             $state.go("portal")
-                            $rootScope.logged= true;
-                            $rootScope.userlogged =  JSON.parse(localStorage.getItem("fs_web_userdata"));
-                            
+                            $rootScope.logged = true;
+                            $rootScope.userdata = JSON.parse(localStorage.getItem("fs_web_userdata"));
                         } else {
                             console.log("Ha fallat l'inici de sessió");
                         }
@@ -67,8 +67,8 @@ angular.module('myApp.login', ['ngMaterial','ui.router'])
         $scope.logout = function(){
             localStorage.removeItem("fs_web_token");
             localStorage.removeItem("fs_web_userdata");
-            $state.go("starter") 
-            $rootScope.userlogged={};
+            $state.go("starter");
+            $rootScope.userdata={};
             $rootScope.logged=false;
         };
     });

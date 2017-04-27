@@ -1,13 +1,14 @@
 var API = "http://localhost:3001/api";
 
-angular.module('myApp.profile', ['ngMaterial', 'ngRoute'])
-.config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/users/:userid', {
+angular.module('myApp.profile', ['ngMaterial', 'ui.router'])
+.config(['$stateProvider', function ($stateProvider) {
+        $stateProvider.state('profile', {
+            url:'/users/:userid',
             templateUrl: 'views/profile/profile.html',
-            controller: 'proCtrl'
+            controller: 'profileCtrl'
         });
     }])
-.controller('proCtrl', function($scope, $http, $routeParams) {
+.controller('profileCtrl', function($scope, $http) {
   /*$http.get(API +'/users/'+ $routeParams.userid)
         .then(function(response) {        
         $scope.user={};
@@ -15,5 +16,5 @@ angular.module('myApp.profile', ['ngMaterial', 'ngRoute'])
 	}, function (error){
                 console.log('Error al obtener el usuario: ' + error.data);
         });*/
-        $scope.actualuser =  JSON.parse(localStorage.getItem("fs_web_userdata"));
+        $scope.userdata =  JSON.parse(localStorage.getItem("fs_web_userdata"));
 })
