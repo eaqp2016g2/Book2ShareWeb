@@ -1,14 +1,12 @@
-/**
- * Created by juan on 03/04/17.
- */
 
-angular.module('myApp.starter', ['ngRoute'])
-    .config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/starter', {
-            templateUrl: 'views/starter/starter.html',
+angular.module('myApp.starter', ['ui.router'])
+    .config(function ($stateProvider) {
+        $stateProvider.state('starter',{
+            url:'/starter',
+            templateUrl:'views/starter/starter.html',
             controller: 'StarterController'
-        });
-    }])
+        })
+    })
     .controller('StarterController', function ($scope, $http) {
 
     });

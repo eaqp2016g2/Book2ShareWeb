@@ -2,17 +2,18 @@
  * Created by juan on 30/03/17.
  */
 
-angular.module('myApp.messaging', ['ngRoute'])
+angular.module('myApp.messaging', ['ui.router'])
 
-    .config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/messaging', {
+    .config(['$stateProvider', function ($stateProvider) {
+        $stateProvider.state('messaging', {
+            url: '/messaging',
             templateUrl: 'views/messaging/messaging.html',
             controller: 'MessagingCtrl'
         });
     }])
-    .controller('MessagingCtrl', function ($scope, $http, $routeParams, $filter,
+    .controller('MessagingCtrl', function ($scope, $http, $filter,
                                            toastr) {
-        $scope.storageuser = JSON.parse(localStorage.getItem("fs_web_userdata"));
+        $scope.userdata = JSON.parse(localStorage.getItem("fs_web_userdata"));
 
         $scope.showComposer = function (ev) {
             $mdDialog.show({
@@ -66,7 +67,7 @@ angular.module('myApp.messaging', ['ngRoute'])
                             $scope.newMessage = {};
                         },
                         function () {
-                            toastr.error('Error a l\'enviar el missatge');
+             //               toastr.error('Error a l\'enviar el missatge');
                         });
             }
         };
