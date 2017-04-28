@@ -18,4 +18,9 @@ angular.module('myApp.profile', ['ngMaterial', 'ui.router'])
                 console.log('Error al obtener el usuario: ' + error.data);
         });*/
         $scope.actualuser =  JSON.parse(localStorage.getItem("fs_web_userdata"));
+
+        $scope.cambiar_avatar = function(){
+            
+        }
+
 })
