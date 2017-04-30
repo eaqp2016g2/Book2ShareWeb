@@ -2,9 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Añade un nuevo libro</title>
 </head>
 <body>
-
+ <md-input-container md-no-float class="md-block">
+          <input ng-model="book.titulo" placeholder="Titulo">         
+        </md-input-container>
+        <md-input-container md-no-float class="md-block">
+        <input ng-model="book.genero" placeholder="Genero">
+        </md-input-container>
+        <md-input-container md-no-float class="md-block">
+            <input ng-model="book.idioma" placeholder="Idioma">
+        </md-input-container>
+        <md-input-container md-no-float class="md-block">
+        <input ng-model="book.publicacion" placeholder="Año">
+        </md-input-container>
+        <md-input-container md-no-float class="md-block">
+        <input ng-model="book.autor" placeholder="Autor">
+        </md-input-container>
+        <md-input-container md-no-float class="md-block">
+        <input ng-model="book.editorial" placeholder="Editorial">
+        </md-input-container>
+        <md-card-actions layout="row" layout-align="end center">
+            <md-button ng-click="publicar()" class="md-raised md-primary">Confirma</md-button>
+        </md-card-actions>
 </body>
 </html>

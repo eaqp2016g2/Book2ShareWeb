@@ -1,7 +1,6 @@
-
 angular.module('myApp', ['ui.router', 'myApp.starter', 'myApp.portal', 'myApp.book',
     'myApp.login', 'myApp.register', 'myApp.library', 'myApp.profile', 'myApp.sidenav',
-    'myApp.map', 'myApp.book', 'myApp.review', 'myApp.messaging', 'myApp.settings'])
+    'myApp.map', 'myApp.book', 'myApp.review', 'myApp.messaging', 'myApp.settings', 'myApp.publicar'])
 
 .run(['$rootScope', '$state','$stateParams',
 function($rootScope, $state, $stateParams){
