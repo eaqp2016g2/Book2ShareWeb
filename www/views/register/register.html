@@ -1,25 +1,33 @@
 <md-dialog-content>
-            <form>
-                <md-content class="md-padding">
-                    <md-input-container class="md-block">
-                        <label>Nom</label>
-                        <input ng-model="newUser.name" required>
-                    </md-input-container>
-                    <md-input-container class="md-block">
-                        <label>Correu electrònic</label>
-                        <input ng-model="newUser.email" required>
-                    </md-input-container>
-                    <md-input-container class="md-block">
-                        <label>Contrasenya</label>
-                        <input ng-model="newUser.password" type="password" required>
-                    </md-input-container>
-                    <md-input-container class="md-block">
-                        <label>Repeteix la contrasenya</label>
-                        <input ng-model="newUser.password" type="password" required>
-                    </md-input-container>
-                    <md-card-actions layout="row" layout-align="end center">
-                        <md-button ng-click="register()" class="md-raised md-primary">Confirma</md-button>
-                    </md-card-actions>
-                </md-content>
-            </form>
+    <form name="Registre">
+        <md-content class="md-padding">
+            <md-input-container class="md-block">
+                <label>Nom</label>
+                <input ng-model="newUser.name" type="text" required>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Correu electrònic</label>
+                <input ng-model="newUser.email" type="email" required
+                       ui-validate-async="{alreadyExists: 'doesNotExist($modelValue)'}">
+                <!--<span ng-show='Registre.newUser.email.$pending'>Verificant la direcció de correu al servidor...</span>
+                <span ng-show='Registre.newUser.email.$error.alreadyExists'>El correu està en ús!</span> -->
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Contrasenya</label>
+                <input id="passwd" ng-model="newUser.password" type="password" required>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Repeteix la contrasenya</label>
+                <input ng-model="newUser.password2" type="password"
+                       ui-validate=" '$value==newUser.password' "
+                       ui-validate-watch=" 'newUser.password' "
+                       required>
+            </md-input-container>
+            <md-card-actions layout="row" layout-align="end center">
+                <md-button ng-disabled="!Registre.$valid" ng-click="register()" class="md-raised md-primary">Confirma
+                </md-button>
+            </md-card-actions>
+        </md-content>
+    </form>
+
 </md-dialog-content>
