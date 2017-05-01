@@ -9,12 +9,20 @@
             <!-- <md-button class="md-icon-button" aria-label="Favorite">
                 <md-icon md-svg-icon="img/icons/favorite.svg" style="color: greenyellow;"></md-icon>
             </md-button> -->
+            <form class="navbar-form" role="search">
+        <div class="input-group">
+            <input type="text" class="form-control" ng-model="title" placeholder="Search" name="search">
+            <div class="input-group-btn">
+                <button class="btn btn-default" ng-click="searchTitle()" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
+        </div>
+        </form>
             <md-button ng-hide="logged" href="#" ng-click="showAdvanced($event)" aria-label="Inicia sessió">
                 Inicia sessió
             </md-button>
             <md-button ng-href="#!/register" aria-label="Registra" ng-hide="logged">
                 Registra
-            </md-button>
+            </md-button>            
             <md-button ng-hide="!logged" href="#" ng-click="logout()" aria-label="Tanca sessió">
                 Tanca sessió
             </md-button>

@@ -7,5 +7,5 @@ angular.module('myApp.profile', ['ngMaterial', 'ui.router'])
         });
     }])
 .controller('profileCtrl', function($scope, $http) {
-        $scope.userdata =  JSON.parse(localStorage.getItem("fs_web_userdata"));
+        $scope.userdata =  JSON.parse(localStorage.getItem("fs_web_userdata"));       
 })

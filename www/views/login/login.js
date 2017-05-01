@@ -69,4 +69,9 @@ angular.module('myApp.login', ['ngMaterial','ui.router'])
             $rootScope.userdata={};
             $rootScope.logged=false;
         };
+        $scope.searchTitle = function(){
+            $rootScope.title=$scope.title;
+            $scope.title=null;
+            $state.go("finder")
+        };
     });
