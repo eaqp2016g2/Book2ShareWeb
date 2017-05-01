@@ -1,5 +1,3 @@
-var API = "http://localhost:3001/api";
-
 angular.module('myApp.publicar', ['ngMaterial', 'ui.router'])
 .config(['$stateProvider', function ($stateProvider) {
         $stateProvider
@@ -12,12 +10,12 @@ angular.module('myApp.publicar', ['ngMaterial', 'ui.router'])
 .controller('publicarCtrl', function ($scope, $http, $state, $rootScope) {
 
         $scope.book = {};
-        $scope.book.usuario=$rootScope.userlogged._id
+        $scope.book.usuario=$rootScope.userdata._id
         console.log('book', $scope.book)
 
         $scope.publicar = function ($state) {
             $http({
-                url: API + '/books',
+                url: API + '/book',
                 method: "POST",
                 data: $scope.book
             })

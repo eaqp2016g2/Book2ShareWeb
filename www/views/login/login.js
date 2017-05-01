@@ -2,8 +2,6 @@
  * Created by juan on 10/04/17.
  */
 
-var API = "http://localhost:3001/api/";
-
 angular.module('myApp.login', ['ngMaterial','ui.router'])
 
     .controller('LoginCtrl', function ($scope, $mdDialog, $http, $window, $rootScope, $state) {

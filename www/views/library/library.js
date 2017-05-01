@@ -1,5 +1,3 @@
-var API = "http://localhost:3001/api";
-
 angular.module('myApp.library', ['ngMaterial', 'ui.router'])
 .config(['$stateProvider', function ($stateProvider) {
         $stateProvider.state('library', {
@@ -9,9 +7,9 @@ angular.module('myApp.library', ['ngMaterial', 'ui.router'])
         });
     }])
 .controller('libCtrl', function($scope, $http) {
-  $http.get(API +'/books')
+  $http.get(API +'/book')
         .then(function(response) {
-		$scope.libros = response.data;
+		$scope.books = response.data;
 	}, function (error){
                 console.log('Error al obtener los libros: ' + error.data);
         });

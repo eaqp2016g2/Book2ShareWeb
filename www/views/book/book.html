@@ -1,30 +1,57 @@
-<md-content class="md-padding" layout-xs="column" layout="row">
-    <div flex-xs flex-gt-xs="50" layout="column">
-        <md-card>
-            <img ng-src="{{imagePath}}" class="md-card-image" alt="Washed Out">
-            <md-card-title>
-                <md-card-title-text>
-                    <span class="md-headline">In-card mixed actions</span>
-                </md-card-title-text>
-            </md-card-title>
-            <md-card-actions layout="row" layout-align="start center">
-                <md-card-icon-actions>
+<div ng-controller="BookController" ng-cloak>
+    <md-content class="md-padding" layout-xs="column" layout="row">
+        <div flex-xs flex-gt-xs="50" layout="column">
+            <md-card ng-repeat="book in books">
+                <md-card-header>
+                    <md-card-avatar>
+                        <img src="../../img/accessories-dictionary2.svg"/>
+                    </md-card-avatar>
+                    <md-card-header-text>
+                        <span class="md-title">{{book.title}}</span>
+                        <span class="md-subhead">{{book.author[0]}}</span>
+                    </md-card-header-text>
+                </md-card-header>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">Detalls</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+                    <div md-cols-sm="2">
+                        <img src="../../img/accessories-dictionary2.svg" class="md-card-image" alt="Portada"
+                             md-colspan-sm="1">
+                        <p md-colspan-sm="1">
+                            <!-- Gènere: {{book.description}}    <br> -->
+                            Any: {{book.year | date:'yyyy'}} <br>
+                            Llengua: {{book.language}} <br>
+                            Autor: {{book.author[0]}} <br>
+                            Editorial: {{book.editorial}} <br>
+                            <!-- Lector actual: {{book.user}}  -->
+                        </p>
+                    </div>
+                </md-card-content>
+                <md-card-actions layout="row" layout-align="end center">
                     <md-button class="md-icon-button" aria-label="Favorite">
                         <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
+                    </md-button>
+                    <md-button class="md-icon-button" aria-label="Settings">
+                        <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
                     </md-button>
                     <md-button class="md-icon-button" aria-label="Share">
                         <md-icon md-svg-icon="img/icons/share-arrow.svg"></md-icon>
                     </md-button>
-                </md-card-icon-actions>
-                <md-button>Action 1</md-button>
-                <md-button>Action 2</md-button>
-            </md-card-actions>
-            <md-card-content>
-                <p>
-                    The titles of Washed Out's breakthrough song and the first single from Paracosm share the
-                    two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
-                </p>
-            </md-card-content>
-        </md-card>
-    </div>
-</md-content>
+                </md-card-actions>
+            </md-card>
+            <md-card>
+                <md-card-header>
+                    <md-card-header-text>
+                        <span class="md-title">Nou llibre</span>
+                    </md-card-header-text>
+                </md-card-header>
+                <md-card-content>
+                    <a href="#" ui-sref="publicar"><img src="../../img/accessories-dictionary2.svg"></a>
+                </md-card-content>
+            </md-card>
+        </div>
+    </md-content>
+</div>
