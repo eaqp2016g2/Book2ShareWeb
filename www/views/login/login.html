@@ -1,5 +1,5 @@
 <md-dialog aria-label="Inicia sessió" ng-controller="LoginCtrl">
-    <form ng-cloak>
+    <form name="Login" ng-cloak>
         <md-toolbar>
             <div class="md-toolbar-tools">
                 <h2>Inicia sessió</h2>
@@ -19,7 +19,7 @@
                     <div class="col-md-8">
                         <md-input-container class="md-block">
                             <label>Correu electrònic</label>
-                            <input ng-model="actualUser.email" required>
+                            <input ng-model="actualUser.email" type="email" required>
                         </md-input-container>
                         <md-input-container class="md-block">
                             <label>Contrasenya</label>
@@ -31,7 +31,7 @@
         </md-dialog-content>
         <md-dialog-actions layout="row">
             <span flex></span>
-            <md-button ng-click="login()" class="md-raised md-primary">Entra</md-button>
+            <md-button ng-disabled="Login.$invalid" ng-click="login()" class="md-raised md-primary">Entra</md-button>
         </md-dialog-actions>
     </form>
 </md-dialog>
