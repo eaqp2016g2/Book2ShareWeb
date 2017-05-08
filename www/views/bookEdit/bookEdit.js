@@ -24,7 +24,7 @@ angular.module('myApp.publicar', ['ngMaterial', 'ui.router'])
                             $scope.book={};
                             //$state.go("library")
                         } else {
-                            console.log("Ha fallat la publicacio del llibre");
+                            console.log("Ha fallat la publicació del llibre");
                         }
                     });
         };

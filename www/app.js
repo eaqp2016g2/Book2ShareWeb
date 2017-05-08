@@ -11,7 +11,7 @@ function($rootScope, $state, $stateParams){
     $rootScope.$stateParams= $stateParams;
     console.log('state', $state);
     if (localStorage.getItem('fs_web_token')) {
-        console.log('L\'usuari ha iniciat sessió, redirigint al portal')
+        console.log('L\'usuari ha iniciat sessió, redirigint al portal');
         $rootScope.logged = true;
         $rootScope.userdata = JSON.parse(localStorage.getItem("fs_web_userdata"));
         $state.go("portal")

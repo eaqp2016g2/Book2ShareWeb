@@ -1,16 +1,95 @@
+<link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:400,700,300'>
+<link rel='stylesheet prefetch'
+      href='https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.1.2/css/material-design-iconic-font.min.css'>
+<!-- <link rel='stylesheet prefetch' href='https://cdn.rawgit.com/wedeploy/demo-wechat/gh-pages/styles/vendor/devices.min.css'> -->
+<link rel="stylesheet" href="../../views/messaging/messaging.css">
 <div class="row" ng-controller="MessagingCtrl">
     <div class="col-md-3">
         <a href="#" ng-click="showComposer($event)">Nou missatge</a>
-        Converses
+        <md-content>
+            <md-list flex>
+                <md-list-item ng-repeat="entry in conversations" class="md-2-line">
+                    <img ng-src="{{entry.face}}?20" class="md-avatar" alt="{{entry._id}}"/>
+                    <div class="md-list-item-text">
+                        <h3>{{entry._id}}</h3>
+                        <!-- <p>{{entry.message}}</p> -->
+                    </div>
+                </md-list-item>
+            </md-list>
+        </md-content>
     </div>
-    <div class="co-md-9">
-        Conversació
-        <p class="triangle-border left">Prueba</p>
-        <p class="triangle-border right">Prueba</p>
-        <blockquote class="example-obtuse">
-            <p>It’s not what you look at that matters, it’s what you see.</p>
-        </blockquote>
-        <p>Henry David Thoreau</p>
+    <div class="col-md-9">
+        <div class="container">
+            <!-- <ul>
+                <li ng-repeat="message in conversation2">
+                    <div class="{{message.bubble}}"><span class="{{message.personName}}">{{message.userA}}</span> <br>
+                        <span class="{{message.personSay}}">{{message.content}}</span></div>
+                    <span class="{{message.timeRound}}">{{message.date}}<span><img src="img/right.png" width="21"
+                                                                                   height="15"></span></span></li>
+            </ul> -->
+            <div class="page">
+                <div>
+                    <div>
+                        <div class="chat">
+                            <div class="chat-container">
+                                <div class="user-bar">
+                                    <div class="back">
+                                        <i class="zmdi zmdi-arrow-left"></i>
+                                    </div>
+                                    <div class="avatar">
+                                        <img src="https://avatars2.githubusercontent.com/u/398893?s=128" alt="Avatar">
+                                    </div>
+                                    <div class="name">
+                                        <span>{{conversation.user}}</span>
+                                        <span class="status">online</span>
+                                    </div>
+                                    <div class="actions more">
+                                        <i class="zmdi zmdi-more-vert"></i>
+                                    </div>
+                                    <div class="actions attachment">
+                                        <i class="zmdi zmdi-attachment-alt"></i>
+                                    </div>
+                                    <div class="actions">
+                                        <i class="zmdi zmdi-phone"></i>
+                                    </div>
+                                </div>
+                                <div class="conversation">
+                                    <div class="conversation-container">
+                                        <div ng-repeat="message in conversation">
+                                            <div class="{{message.send}}">
+                                                {{message.content}}
+                                                <span class="metadata">
+                      <span class="time">{{message.date  | date : "h:mm a" }}</span><span class="tick"><img
+                                                        src="../../img/readtick.svg"></span>
+                  </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <form class="conversation-compose">
+                                        <div class="emoji">
+                                            <img src="../../img/emoji.svg">
+                                        </div>
+                                        <input ng-model="newMessage.content" class="input-msg" name="input" placeholder="Type a message"
+                                               autocomplete="off" autofocus>
+                                        <!-- <div class="photo">
+                                            <i class="zmdi zmdi-camera"></i>
+                                        </div> -->
+                                        <button ng-click="sendMessage(conversation.user)" class="send">
+                                            <div class="circle">
+                                                <i class="zmdi zmdi-mail-send"></i>
+                                            </div>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+        </div>
+        <!--<div class="input-group"><span class="input-group-addon">@</span>
+            <input type="text" class="form-control" placeholder="Username">
+        </div> -->
     </div>
 </div>
