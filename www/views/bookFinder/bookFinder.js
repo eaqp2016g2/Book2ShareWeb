@@ -6,7 +6,7 @@ angular.module('myApp.bookFinder', ['ngMaterial', 'ui.router'])
             controller: 'finderCtrl'
         });
     }])
-.controller('finderCtrl', function($scope, $http, $rootScope) {
+.controller('finderCtrl', function($scope, $http, $rootScope, $state) {
 
    $http({
                 url: API + '/book/search/title/' + $rootScope.title,
@@ -22,4 +22,9 @@ angular.module('myApp.bookFinder', ['ngMaterial', 'ui.router'])
                             console.log("No hi ha cap llibre");
                         }
                     });
+        $scope.searchBook = function (book) {
+        $rootScope.booksel=book;
+        console.log("libro sel" + $rootScope.booksel)
+        $state.go("bookDetail")
+    }
 });
