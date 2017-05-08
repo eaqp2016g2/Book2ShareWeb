@@ -1,12 +1,12 @@
-angular.module('myApp.bookFinder', ['ngMaterial', 'ui.router'])
+angular.module('myApp.bookFinder2', ['ngMaterial', 'ui.router'])
 .config(['$stateProvider', function ($stateProvider) {
-        $stateProvider.state('finder', {
+        $stateProvider.state('finder2', {
             url: '/library/:title',
-            templateUrl: 'views/bookFinder/bookFinder.html',
-            controller: 'finderCtrl'
+            templateUrl: 'views/bookFinder/bookFinder2.html',
+            controller: 'finderCtrl2'
         });
     }])
-.controller('finderCtrl', function($scope, $http, $rootScope) {
+.controller('finderCtrl2', function($scope, $http, $rootScope) {
 
    $http({
                 url: API + '/book/search/title/' + $rootScope.title,
