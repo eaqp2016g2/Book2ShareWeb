@@ -9,7 +9,7 @@ angular.module('myApp.bookFinder', ['ngMaterial', 'ui.router'])
 .controller('finderCtrl', function($scope, $http, $rootScope) {
 
    $http({
-                url: API + '/book/' + $rootScope.title,
+                url: API + '/book/search/title/' + $rootScope.title,
                 method: "GET",
                 data: $rootScope.title
             })

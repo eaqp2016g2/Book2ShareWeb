@@ -1,0 +1,29 @@
+<div ng-controller="advSCtrl" ng-cloak>
+    <md-content class="md-padding" layout-xs="column" layout="row">
+        <div flex-xs flex-gt-xs="50" layout="column">
+            <h1>Buscador</h1>
+            <md-input-container md-no-float class="md-block">
+                <input ng-model="title" placeholder="Titulo">
+            </md-input-container>
+            <md-card-actions layout="row" layout-align="end center">
+                <md-button ng-click="searchTitle()" class="md-raised md-primary">Buscar</md-button>
+            </md-card-actions>
+            <md-input-container md-no-float class="md-block">
+                <input ng-model="genre" placeholder="Genero">
+            </md-input-container><md-card-actions layout="row" layout-align="end center">
+                <md-button ng-click="searchGenre()" class="md-raised md-primary">Buscar</md-button>
+            </md-card-actions>
+            <md-input-container md-no-float class="md-block">
+                <input ng-model="language" placeholder="Idioma">
+            </md-input-container><md-card-actions layout="row" layout-align="end center">
+                <md-button ng-click="searchLanguage()" class="md-raised md-primary">Buscar</md-button>
+            </md-card-actions>
+            <md-input-container md-no-float class="md-block">
+                <input ng-model="author" placeholder="Autor">
+            </md-input-container>
+            <md-card-actions layout="row" layout-align="end center">
+                <md-button ng-click="searchAuthor()" class="md-raised md-primary">Buscar</md-button>
+            </md-card-actions>
+        </div>
+    </md-content>
+</div>
