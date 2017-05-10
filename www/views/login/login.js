@@ -45,7 +45,7 @@ angular.module('myApp.login', ['ngMaterial','ui.router'])
 
             })
                 .then(function (response) {
-                        if (response.data.success == true) {                 
+                        if (response.data.success == true) {
                             localStorage.setItem("fs_web_token", response.data.token);
                             localStorage.setItem("fs_web_userdata", JSON.stringify(response.data.user));                                                                                   
                             //console.log('user2', $scope.userdata)
@@ -63,12 +63,25 @@ angular.module('myApp.login', ['ngMaterial','ui.router'])
         };
 
         $scope.logout = function(){
+
+            var data = {
+                user_id: $rootScope.userdata._id,
+                token: localStorage.getItem("fs_web_token")
+            };
+            console.log(data);
+            $http({
+                url: API + '/users/logout',
+                method: "POST",
+                data: data
+            });
+
             localStorage.removeItem("fs_web_token");
             localStorage.removeItem("fs_web_userdata");
             $state.go("starter");
             $rootScope.userdata={};
             $rootScope.logged=false;
         };
+
        $scope.searchTitle = function(){
             $rootScope.title=$scope.title;
             $scope.title=null;

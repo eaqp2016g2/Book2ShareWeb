@@ -8,10 +8,10 @@
         <a href="#" ng-click="showComposer($event)">Nou missatge</a>
         <md-content>
             <md-list flex>
-                <md-list-item ng-repeat="entry in conversations" class="md-2-line">
-                    <img ng-src="{{entry.face}}?20" class="md-avatar" alt="{{entry._id}}"/>
+                <md-list-item href="#" ng-repeat="entry in conversations" class="md-2-line">
+                    <img src="../../img/user-identity.svg" class="md-avatar" alt="{{entry}}"/>
                     <div class="md-list-item-text">
-                        <h3>{{entry._id}}</h3>
+                        <h3>{{entry}}</h3>
                         <!-- <p>{{entry.message}}</p> -->
                     </div>
                 </md-list-item>
@@ -37,7 +37,7 @@
                                         <i class="zmdi zmdi-arrow-left"></i>
                                     </div>
                                     <div class="avatar">
-                                        <img src="https://avatars2.githubusercontent.com/u/398893?s=128" alt="Avatar">
+                                        <img src="../../img/user-identity.svg" alt="Avatar">
                                     </div>
                                     <div class="name">
                                         <span>{{conversation.user}}</span>
