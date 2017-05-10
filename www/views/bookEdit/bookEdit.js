@@ -10,7 +10,7 @@ angular.module('myApp.publicar', ['ngMaterial', 'ui.router'])
 .controller('publicarCtrl', function ($scope, $http, $state, $rootScope) {
 
         $scope.book = {};
-        $scope.book.user=$rootScope.userdata._id
+        $scope.book.propietary=$rootScope.userdata.name
         console.log('book', $scope.book)
 
         $scope.publicar = function ($state) {

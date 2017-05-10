@@ -18,7 +18,7 @@ angular.module('myApp.advSearch', ['ngMaterial', 'ui.router'])
             })
                 .then(function (response) {
                         if (response.data != null) {   
-
+                            $scope.title={}
                             $rootScope.libros = response.data
                             $state.go("results")
                                                       

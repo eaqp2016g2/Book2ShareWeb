@@ -6,9 +6,15 @@ angular.module('myApp.results', ['ngMaterial', 'ui.router'])
             controller: 'resultsCtrl'
         });
     }])
-    .controller('resultsCtrl', function($scope, $http, $rootScope) {
+    .controller('resultsCtrl', function($scope, $http, $rootScope, $state) {
 
         $scope.books=$rootScope.libros;
-        //$rootScope.libros={};
+        $rootScope.libros={};
+
+        $scope.searchBook = function (book) {
+        $rootScope.booksel=book;
+        console.log("libro sel" + $rootScope.booksel)
+        $state.go("bookDetail")
+    }
 
     })

@@ -5,7 +5,7 @@
             <md-subheader class="md-no-sticky">La biblioteca</md-subheader>
             <md-button md-no-ink class="md-primary" ng-click="campo=title" ng-model="campo" value="title">Nom</md-button>
             <md-button md-no-ink class="md-primary" ng-click="campo=year" ng-model="campo" value="year">Any de publicació</md-button>
-            <md-list-item class="md-3-line" ng-repeat="book in books | orderBy:'title'" ng-click="null">
+            <md-list-item class="md-3-line" ng-repeat="book in books | orderBy:'title'" ng-click="searchBook(book)">
                 <img src="../../img/kthesaurus.svg" class="md-avatar"/>
                 <div class="md-list-item-text" layout="column">
                     <h3>{{ book.title }}</h3>

@@ -9,8 +9,8 @@ angular.module('myApp.book', ['ui.router', 'ngMaterial'])
             templateUrl: 'views/book/book.html',
             controller: 'BookController'
         });
-    }]).controller('BookController', function ($scope, $http) {
-    $http.get(API +'/book')
+    }]).controller('BookController', function ($scope, $http, $rootScope) {
+    $http.get(API +'/books/user/'+ $rootScope.userdata.name)
         .then(function(response) {
             $scope.books = response.data;
         }, function (error){

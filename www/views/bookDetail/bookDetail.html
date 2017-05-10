@@ -1,0 +1,56 @@
+<style>
+    /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+    .row.content {
+        height: 100%
+    }
+
+    /* Set gray background color and 100% height */
+    .sidenav {
+        background-color: #f1f1f1;
+        height: 100%;
+    }
+
+    /* Set black background color, white text and some padding */
+    footer {
+        background-color: #555;
+        color: white;
+        padding: 15px;
+    }
+
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+        .sidenav {
+            height: auto;
+            padding: 15px;
+        }
+
+        .row.content {
+            height: auto;
+        }
+    }
+</style>
+<div class="container-fluid">
+    <div class="row content">
+        <div class="col-sm-3 sidenav">
+            <h4>{{book.title}}</h4>
+            <img src="../../img/descarga.jpe" class="img-thumbnail" width="304" height="236">            
+        </div>
+
+        <div class="col-sm-9">
+            <h4>
+                <small>Informació</small>
+            </h4>
+            <hr>
+            <ul class="list-group">
+                <li class="list-group-item">Titol: {{book.title}}</li>
+                <li class="list-group-item">Gènere: {{book.email}}</li>
+                <li class="list-group-item">Idioma: {{book.language}}</li>
+                <li class="list-group-item">Autor: {{book.author}}</li>
+                <li class="list-group-item">Propietari: {{book.propietary}}</li>
+                <li class="list-group-item">Descripció: {{book.description}}</li>
+            </ul>
+
+            <br><br>
+        </div>
+    </div>
+</div>
