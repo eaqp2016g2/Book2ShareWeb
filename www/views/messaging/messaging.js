@@ -2,7 +2,7 @@
  * Created by juan on 30/03/17.
  */
 
-angular.module('myApp.messaging', ['ui.router'])
+angular.module('myApp.messaging', ['ui.router', 'angular.filter'])
 
     .config(['$stateProvider', function ($stateProvider) {
         $stateProvider.state('messaging', {
@@ -66,26 +66,41 @@ angular.module('myApp.messaging', ['ui.router'])
                 console.log('Error al obtener los usuarios: ' + error.data);
             });
 
+
         // Obtener todos los mensajes de un usuario determinado
 
+        $scope.conversation = {};
+        $scope.conversation2 = {};
+
         $scope.getMessages = function () {
-            //var user_id = "590bec1e7ab5bb0e1f82dc04";
-            var user_id = "58f5dc646c443119afa60409";
+            //var user_id = "59132b36b8a222100c2aecb9";
+            var user_id = "590bec1e7ab5bb0e1f82dc04";
             $http.get(API + '/msg/' + user_id)
                 .then(function (response) {
                     $scope.conversation = response.data;
                     $scope.conversation2 = orderMessages($scope.conversation, user_id);
-                    //console.log($scope.conversation2);
-
                 }, function (error) {
                     console.log('Error al obtener los mensajes: ' + error.data);
                 });
 
+            //console.log($scope.conversation);
+
             function orderMessages(conversation, user) {
                 conversation.user = user;
                 for (var message of conversation) {
-                    if (message.userA = userdata._id) {
+                    if (message.userA === userdata._id) {
                         message.send = "message sent";
+                        if(message.read === true){
+                            message.tick= "../../img/msg-dblcheck-ack.svg";
+                        }
+                        else{
+                            if(message.delivered === true){
+                                message.tick = "../../img/msg-dblcheck.svg";
+                            }
+                            else{
+                                message.tick = "../../img/msg-check.svg";
+                            }
+                        }
                     }
                     else {
                         message.send = "message received";

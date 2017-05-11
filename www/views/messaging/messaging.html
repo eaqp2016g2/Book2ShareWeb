@@ -1,38 +1,34 @@
 <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:400,700,300'>
-<link rel='stylesheet prefetch'
-      href='https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.1.2/css/material-design-iconic-font.min.css'>
+<link rel="stylesheet prefetch"
+      href="../../bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.css">
 <!-- <link rel='stylesheet prefetch' href='https://cdn.rawgit.com/wedeploy/demo-wechat/gh-pages/styles/vendor/devices.min.css'> -->
 <link rel="stylesheet" href="../../views/messaging/messaging.css">
 <div class="row" ng-controller="MessagingCtrl">
     <div class="col-md-3">
-        <a href="#" ng-click="showComposer($event)">Nou missatge</a>
+        <a href="#" ng-click="showComposer($event)">Nou xat</a>
         <md-content>
             <md-list flex>
-                <md-list-item href="#" ng-repeat="entry in conversations" class="md-2-line">
-                    <img src="../../img/user-identity.svg" class="md-avatar" alt="{{entry}}"/>
+                <div ng-repeat="user in users">
+                <md-list-item href="#" ng-if="conversations | contains:user._id" class="md-2-line">
+                    <img ng-src="{{user.avatar}}" class="md-avatar" alt="{{user.name}}"/>
                     <div class="md-list-item-text">
-                        <h3>{{entry}}</h3>
+                        <h3>{{user.name}}</h3>
                         <!-- <p>{{entry.message}}</p> -->
                     </div>
                 </md-list-item>
+                </div>
             </md-list>
         </md-content>
     </div>
     <div class="col-md-9">
         <div class="container">
-            <!-- <ul>
-                <li ng-repeat="message in conversation2">
-                    <div class="{{message.bubble}}"><span class="{{message.personName}}">{{message.userA}}</span> <br>
-                        <span class="{{message.personSay}}">{{message.content}}</span></div>
-                    <span class="{{message.timeRound}}">{{message.date}}<span><img src="img/right.png" width="21"
-                                                                                   height="15"></span></span></li>
-            </ul> -->
             <div class="page">
                 <div>
                     <div>
                         <div class="chat">
                             <div class="chat-container">
                                 <div class="user-bar">
+
                                     <div class="back">
                                         <i class="zmdi zmdi-arrow-left"></i>
                                     </div>
@@ -40,8 +36,10 @@
                                         <img src="../../img/user-identity.svg" alt="Avatar">
                                     </div>
                                     <div class="name">
-                                        <span>{{conversation.user}}</span>
-                                        <span class="status">online</span>
+
+                                        <span ng-repeat="user in users | filterBy: ['_id']: conversation.user">
+                                            {{user.name}}</span>
+                                        <span class="status"></span>
                                     </div>
                                     <div class="actions more">
                                         <i class="zmdi zmdi-more-vert"></i>
@@ -60,7 +58,7 @@
                                                 {{message.content}}
                                                 <span class="metadata">
                       <span class="time">{{message.date  | date : "h:mm a" }}</span><span class="tick"><img
-                                                        src="../../img/readtick.svg"></span>
+                                                        ng-src="{{message.tick}}"></span>
                   </span>
                                             </div>
                                         </div>
@@ -86,10 +84,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
-        <!--<div class="input-group"><span class="input-group-addon">@</span>
-            <input type="text" class="form-control" placeholder="Username">
-        </div> -->
     </div>
 </div>

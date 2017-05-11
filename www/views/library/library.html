@@ -16,8 +16,8 @@
                 <p>{{book.editorial}}</p>
                 <p>{{book.genre}}</p>
                 <div class="md-list-item-text" layout="column">
-                    <h4>Propietari: {{book.propietary}}</h4>
-                    <h4>Lector: {{book.user}}</h4>
+                    <h4 ng-repeat="user in users | filterBy: ['_id']: book.propietary">Propietari: {{book.propietary}}</h4>
+                    <h4 ng-repeat="user in users | filterBy: ['_id']: book.user">Lector: {{book.user}}</h4>
                 </div>
                 <md-button class="md-fab md-primary md-hue-2" aria-label="Favorite">
                     <md-icon
