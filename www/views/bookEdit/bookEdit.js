@@ -27,7 +27,7 @@ angular.module('myApp.publicar', ['ngMaterial', 'ui.router'])
         if ($scope.selectedItem !== undefined) {
           return "Idioma del llibre: " + $scope.selectedItem;
         } else {
-          return "Please select a language";
+          return "Selecciona un idioma";
         }
       };
 
