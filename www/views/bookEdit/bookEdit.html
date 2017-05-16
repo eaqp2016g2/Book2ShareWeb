@@ -6,11 +6,35 @@
                 <input ng-model="book.title" placeholder="Titulo">
             </md-input-container>
             <md-input-container md-no-float class="md-block">
+        <md-select ng-model="book.genre" placeholder="Gènere"
+                   md-on-close="clearSearchTerm()"
+                   data-md-container-class="selectdemoSelectHeader"
+                   multiple>
+          <md-select-header class="demo-select-header">
+            <input ng-model="searchTerm"
+                   type="search"
+                   placeholder="Search for a genre.."
+                   class="demo-header-searchbox md-text">
+          </md-select-header>
+          <md-optgroup label="genres">
+            <md-option ng-value="genre" ng-repeat="genre in genres |
+              filter:searchTerm">{{genre}}</md-option>
+          </md-optgroup>
+        </md-select>
+      </md-input-container>
+            <!--md-input-container md-no-float class="md-block">
                 <input ng-model="book.genre" placeholder="Genero">
-            </md-input-container>
+            </md-input-container-->
             <md-input-container md-no-float class="md-block">
+        <md-select ng-model="selectedItem" md-selected-text="getSelectedText()">
+          <md-optgroup label="languages">
+            <md-option ng-value="language" ng-repeat="language in languages">{{language}}</md-option>
+          </md-optgroup>
+        </md-select>
+      </md-input-container>
+            <!--md-input-container md-no-float class="md-block">
                 <input ng-model="book.language" placeholder="Idioma">
-            </md-input-container>
+            </md-input-container-->
             <md-input-container md-no-float class="md-block">
                 <input ng-model="book.year" placeholder="Año">
             </md-input-container>
