@@ -56,12 +56,13 @@ angular.module('myApp.messaging', ['ui.router', 'angular.filter'])
             };
         }
 
+        console.log(userdata.conversations[0]);
         // Obtener todos los usuarios
 
         $http.get(API +'/users')
             .then(function(response) {
                 $scope.users = response.data;
-                $scope.getMessages();
+                $scope.getMessages(userdata.conversations[0]);
             }, function (error){
                 console.log('Error al obtener los usuarios: ' + error.data);
             });
@@ -72,9 +73,11 @@ angular.module('myApp.messaging', ['ui.router', 'angular.filter'])
         $scope.conversation = {};
         $scope.conversation2 = {};
 
-        $scope.getMessages = function () {
+        //console.log(conversation[0].user);
+
+        $scope.getMessages = function (user_id) {
             //var user_id = "59132b36b8a222100c2aecb9";
-            var user_id = "590bec1e7ab5bb0e1f82dc04";
+            //var user_id = "590bec1e7ab5bb0e1f82dc04";
             $http.get(API + '/msg/' + user_id)
                 .then(function (response) {
                     $scope.conversation = response.data;
@@ -82,7 +85,6 @@ angular.module('myApp.messaging', ['ui.router', 'angular.filter'])
                 }, function (error) {
                     console.log('Error al obtener los mensajes: ' + error.data);
                 });
-
             //console.log($scope.conversation);
 
             function orderMessages(conversation, user) {
@@ -126,11 +128,12 @@ angular.module('myApp.messaging', ['ui.router', 'angular.filter'])
                             console.log(data);
                             $scope.newMessage = {};
                             $scope.refreshConversations(userdata._id);
-                            $scope.getMessages();
+                            $scope.getMessages(destinatari);
                         },
                         function () {
              //               toastr.error('Error a l\'enviar el missatge');
                         });
             }
+            $mdDialog.cancel();
         };
     });

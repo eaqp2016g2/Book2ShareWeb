@@ -14,17 +14,23 @@
             <div class="md-dialog-content">
                         <md-input-container class="md-block">
                             <label>Destí</label>
-                            <input ng-model="newMessage.email" required>
+                            <!-- <input ng-model="newMessage.userB" required> -->
+                            <select ng-model="newMessage.userB">
+                                <option class="form-control input-lg text-center"
+                                        ng-repeat="user in users"
+                                        value="{{user._id}}">{{user.name}}
+                                </option>
+                            </select>
                         </md-input-container>
                         <md-input-container class="md-block">
                             <label>Missatge</label>
-                            <input ng-model="newMessage.content" type="text" required>
+                            <input ng-model="newMessage.content" type="text">
                         </md-input-container>
             </div>
         </md-dialog-content>
         <md-dialog-actions layout="row">
             <span flex></span>
-            <md-button ng-click="sendMessage()" class="md-raised md-primary">Envia</md-button>
+            <md-button ng-click="sendMessage(newMessage.userB)" class="md-raised md-primary">Envia</md-button>
         </md-dialog-actions>
     </form>
 </md-dialog>
