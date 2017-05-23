@@ -59,27 +59,4 @@ angular.module('myApp.sidenav', ['ui.router', 'ngMaterial', 'ngAnimate'])
                 });
 
         };
-        // if (localStorage.getItem("fs_web_token")) {
-        //     console.log('Usuari dins el portal');
-        //     $scope.userdata = JSON.parse(localStorage.getItem("fs_web_userdata"));
-        //     $http.get(API + 'users/' + $scope.userdata._id)
-        //         .then(function (data) {
-        //             localStorage.setItem("fs_web_userdata", JSON.stringify(data.data));
-        //             $scope.userdata = data.data;
-        //         }, function (data, status) {
-        //             console.log('data error');
-        //             console.log(status);
-        //             console.log(data);
-        //         })
-        //         .then(function (result) {
-        //             //users = result.data;
-        //         });
-        // }
-        // else {
-        //     if (($window.location == "#!/register") || ($window.location == "#!/signup")) {
-        //         console.log("Usuari que no ha iniciat sessió");
-        //         $window.location = '/';
-        //     }
-        //     $scope.userdata = null;
-        // }
     });

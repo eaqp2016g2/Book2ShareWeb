@@ -8,8 +8,58 @@
     Administrador
 </h1>
 
-<h2>Afegeix gèneres literaris</h2>
+<md-content class="md-padding" layout="column">
+    <h2 class="md-title">Afegeix gèneres literaris</h2>
+    <h3 class="md-title">Gèneres existents</h3>
+    <md-list flex ng-show="genres_exists">
+        <div ng-repeat="genre in genres">
+            <md-list-item href="#" class="md-2-line">
+                <img ng-src="{{genre.img}}" class="md-avatar" alt="{{genre.name}}"/>
+                <div class="md-list-item-text">
+                    <h3>{{genre.name}}</h3>
+                    <h4>{{genre.description}}</h4>
+                </div>
+                <md-button class="md-secondary md-icon-button" ng-click="deleteGenre(genre)" aria-label="Delete">
+                    <img width="24px" src="../../img/user-trash.svg">
+                </md-button>
+            </md-list-item>
+        </div>
+    </md-list>
+
+    <h3 class="md-title">Afegeix un gènere més</h3>
+
+    <form name="genreForm">
+        <md-chips ng-model="ctrl.roFruitNames" name="genreName" readonly="ctrl.readonly"
+                  md-removable="ctrl.removable" md-max-chips="10" placeholder="Introdueix un gènere...">
+            <md-chip-template>
+                <strong>{{$chip}}</strong>
+                <em>(genre)</em>
+            </md-chip-template>
+        </md-chips>
+
+        <div class="errors" ng-messages="genreForm.genreName.$error">
+            <div ng-message="md-max-chips">Maximum number of genres reached.</div>
+        </div>
+    </form>
+</md-content>
 
 <h2>Afegeix punts d'intercanvi</h2>
 
+<a href="#">Aneu a la pàgina</a>
+
 <h2>Esborra comptes d'usuari</h2>
+<md-content>
+    <md-list flex>
+        <div ng-repeat="user in users">
+            <md-list-item href="#" class="md-2-line">
+                <img ng-src="{{user.avatar}}" class="md-avatar" alt="{{user.name}}"/>
+                <div class="md-list-item-text">
+                    <h3>{{user.name}}</h3>
+                </div>
+                <md-button class="md-secondary md-icon-button" ng-click="deleteUser(user)" aria-label="Delete">
+                    <img width="24px" src="../../img/user-trash.svg">
+                </md-button>
+            </md-list-item>
+        </div>
+    </md-list>
+</md-content>
