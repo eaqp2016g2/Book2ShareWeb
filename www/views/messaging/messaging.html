@@ -5,24 +5,31 @@
 <link rel="stylesheet" href="../../views/messaging/messaging.css">
 <div class="row" ng-controller="MessagingCtrl">
     <div class="col-md-3">
-        <a href="#" ng-click="showComposer($event)">Nou xat</a>
+        <a href="#" ng-click="showComposer($event)"><img style="display: block;
+    margin: auto;" height="64px" src="../../img/mail-unread-new.svg"></a>
         <md-content>
             <md-list flex>
-                <div ng-repeat="user in users">
-                <md-list-item href="#" ng-if="conversations | contains:user._id" class="md-2-line">
-                    <img ng-src="{{user.avatar}}" class="md-avatar" alt="{{user.name}}"/>
-                    <div class="md-list-item-text">
-                        <h3>{{user.name}}</h3>
-                        <!-- <p>{{entry.message}}</p> -->
-                    </div>
-                </md-list-item>
+                <div ng-repeat="user in users" ng-click="selectConversation(user)">
+                    <md-list-item href="#" ng-if="conversations | contains:user._id" class="md-2-line">
+                        <img ng-src="{{user.avatar}}" class="md-avatar" alt="{{user.name}}"/>
+                        <div class="md-list-item-text">
+                            <h3>{{user.name}}</h3>
+                            <!-- <p>{{entry.message}}</p> -->
+                        </div>
+                    </md-list-item>
                 </div>
             </md-list>
         </md-content>
     </div>
     <div class="col-md-9">
-        <div class="container">
-            <div class="page">
+            <div ng-hide="finestraxat">
+                <!-- Xat buit -->
+                <div class="jumbotron">
+                    <h1>Inicia una conversació</h1>
+                    <p>Pots començar un fil de conversació, si cliques a la icona per crear un missatge nou</p>
+                </div>
+            </div>
+            <div class="page" ng-show="finestraxat">
                 <div>
                     <div>
                         <div class="chat">
@@ -55,10 +62,11 @@
                                         <div ng-repeat="message in conversation">
                                             <div class="{{message.send}}">
                                                 {{message.content}}
-                                                <span class="metadata">
-                      <span class="time">{{message.date  | date : "h:mm a" }}</span><span class="tick"><img
-                                                        ng-src="{{message.tick}}"></span>
-                  </span>
+                                                <span class="metadata"><span class="time">
+                                                    {{message.date  | date : "h:mm a" }}</span>
+                                                    <span class="tick"><img ng-src="{{message.tick}}">
+                                                    </span>
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
@@ -66,11 +74,9 @@
                                         <div class="emoji">
                                             <img src="../../img/emoji.svg">
                                         </div>
-                                        <input ng-model="newMessage.content" class="input-msg" name="input" placeholder="Type a message"
+                                        <input ng-model="newMessage.content" class="input-msg" name="input"
+                                               placeholder="Type a message"
                                                autocomplete="off" autofocus>
-                                        <!-- <div class="photo">
-                                            <i class="zmdi zmdi-camera"></i>
-                                        </div> -->
                                         <button ng-click="sendMessage(conversation.user)" class="send">
                                             <div class="circle">
                                                 <i class="zmdi zmdi-mail-send"></i>
@@ -82,7 +88,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
     </div>
 </div>

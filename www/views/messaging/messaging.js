@@ -2,7 +2,7 @@
  * Created by juan on 30/03/17.
  */
 
-angular.module('myApp.messaging', ['ui.router', 'angular.filter'])
+angular.module('myApp.messaging', ['ui.router', 'angular.filter', 'ngMaterial'])
 
     .config(['$stateProvider', function ($stateProvider) {
         $stateProvider.state('messaging', {
@@ -11,7 +11,16 @@ angular.module('myApp.messaging', ['ui.router', 'angular.filter'])
             controller: 'MessagingCtrl'
         });
     }])
-    .controller('MessagingCtrl', function ($scope, $http, $filter, $mdDialog) {
+    .controller('MessagingCtrl', function ($rootScope, $scope, $http, $filter, $mdDialog) {
+
+        $scope.check = function(user){
+            if(user._id===$rootScope.userdata._id){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
 
         var userdata = JSON.parse(localStorage.getItem("fs_web_userdata"));
         $scope.conversations = userdata.conversations;
@@ -57,27 +66,40 @@ angular.module('myApp.messaging', ['ui.router', 'angular.filter'])
         }
 
         console.log(userdata.conversations[0]);
+        $scope.finestraxat;
+
         // Obtener todos los usuarios
 
         $http.get(API +'/users')
             .then(function(response) {
                 $scope.users = response.data;
-                $scope.getMessages(userdata.conversations[0]);
+                if(userdata.conversations[0] !== undefined) {
+                    console.log("Conversations not null");
+                    $scope.finestraxat=true;
+                    $scope.getMessages(userdata.conversations[0]);
+                }
+                else{
+                    console.log("Conversations null");
+                    $scope.finestraxat=false;
+                }
             }, function (error){
                 console.log('Error al obtener los usuarios: ' + error.data);
             });
 
+        // Seleccionar conversa
+
+        $scope.selectConversation = function (user) {
+                $scope.selected = true;
+                $scope.getMessages(user._id);
+                console.log($scope.selected);
+        };
 
         // Obtener todos los mensajes de un usuario determinado
 
         $scope.conversation = {};
         $scope.conversation2 = {};
 
-        //console.log(conversation[0].user);
-
         $scope.getMessages = function (user_id) {
-            //var user_id = "59132b36b8a222100c2aecb9";
-            //var user_id = "590bec1e7ab5bb0e1f82dc04";
             $http.get(API + '/msg/' + user_id)
                 .then(function (response) {
                     $scope.conversation = response.data;
@@ -85,7 +107,6 @@ angular.module('myApp.messaging', ['ui.router', 'angular.filter'])
                 }, function (error) {
                     console.log('Error al obtener los mensajes: ' + error.data);
                 });
-            //console.log($scope.conversation);
 
             function orderMessages(conversation, user) {
                 conversation.user = user;
