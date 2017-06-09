@@ -5,7 +5,7 @@
             <md-subheader class="md-no-sticky">La biblioteca</md-subheader>
             <md-button md-no-ink class="md-primary" ng-click="campo=title" ng-model="campo" value="title">Nom</md-button>
             <md-button md-no-ink class="md-primary" ng-click="campo=year" ng-model="campo" value="year">Any de publicació</md-button>
-            <md-list-item class="md-3-line" ng-repeat="book in books | orderBy:'title'" ng-click="searchBook(book)">
+            <md-list-item class="md-3-line" ng-repeat="book in books2 | orderBy:'title'" ng-click="searchBook(book)">
                 <img src="../../img/kthesaurus.svg" class="md-avatar"/>
                 <div class="md-list-item-text" layout="column">
                     <h3>{{ book.title }}</h3>
@@ -16,14 +16,17 @@
                 <p>{{book.editorial}}</p>
                 <p>{{book.genre}}</p>
                 <div class="md-list-item-text" layout="column">
-                    <h4 ng-repeat="user in users | filterBy: ['_id']: book.propietary">Propietari: {{book.propietary}}</h4>
-                    <h4 ng-repeat="user in users | filterBy: ['_id']: book.user">Lector: {{book.user}}</h4>
+                    <h4 ng-repeat="user in users | where:{_id: book.propietary}">Propietari: {{user.name}}</h4>
+                    <!-- <h4 ng-repeat="user in users | where:{_id: book.user.reader}">Lector: {{user.name}}</h4> -->
                 </div>
-                <md-button class="md-fab md-primary md-hue-2" aria-label="Favorite">
+                <md-button class="md-fab md-primary md-hue-2" ng-click="markFavorite(book)" aria-label="Favorite">
+                    <md-icon md-svg-icon="../../img/ic_favorite_24px.svg"></md-icon>
+                </md-button>
+                <!-- <md-button class="md-fab md-primary md-hue-2" ng-click="unmarkFavorite(book._id)" aria-label="Favorite">
                     <md-icon
                             md-svg-icon="../../img/ic_favorite_24px.svg"></md-icon>
-                </md-button>
-                <md-button class="md-fab md-primary md-hue-2" aria-label="Chat">
+                </md-button> -->
+                <md-button class="md-fab md-primary md-hue-2" ng-click="openChat(book.propietary)" aria-label="Chat">
                     <md-icon
                             md-svg-icon="../../img/ic_comment_24px.svg"></md-icon>
                 </md-button>

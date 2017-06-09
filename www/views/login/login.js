@@ -48,7 +48,6 @@ angular.module('myApp.login', ['ngMaterial','ui.router'])
                         if (response.data.success == true) {
                             localStorage.setItem("fs_web_token", response.data.token);
                             localStorage.setItem("fs_web_userdata", JSON.stringify(response.data.user));                                                                                   
-                            //console.log('user2', $scope.userdata)
                             $mdDialog.hide();
                             $state.go("portal")
                             $rootScope.logged = true;

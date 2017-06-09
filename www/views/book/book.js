@@ -10,7 +10,7 @@ angular.module('myApp.book', ['ui.router', 'ngMaterial'])
             controller: 'BookController'
         });
     }]).controller('BookController', function ($scope, $http, $rootScope) {
-    $http.get(API +'/books/user/'+ $rootScope.userdata.name)
+    $http.get(API +'/books/user/'+ $rootScope.userdata._id)
         .then(function(response) {
             $scope.books = response.data;
         }, function (error){

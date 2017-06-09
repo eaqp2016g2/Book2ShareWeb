@@ -2,7 +2,7 @@
  * Created by juan on 21/03/17.
  */
 
-angular.module('myApp.settings', ['ui.router'])
+angular.module('myApp.settings', ['ui.router', 'ngMaterial'])
     .config(['$stateProvider', function ($stateProvider) {
         $stateProvider.state('settings', {
             url: '/settings',
@@ -13,16 +13,11 @@ angular.module('myApp.settings', ['ui.router'])
     .config(['$mdIconProvider', function($mdIconProvider) {
         $mdIconProvider.icon('md-close', '../../img/ic_close_24px.svg', 24);
     }])
-    .controller('SettingsController', function ($scope, $http, $timeout, $q) {
+    .controller('SettingsController', function ($scope, $http, $mdColorPalette) {
 
-        var self = this;
-
-        self.fruitNames = ['Apple', 'Banana', 'Orange'];
-        self.roFruitNames = angular.copy(self.fruitNames);
-        self.editableFruitNames = angular.copy(self.fruitNames);
-
-        $scope.users;
-        $scope.genres;
+        $scope.users = {};
+        $scope.genres = {};
+        $scope.genre = {};
 
         $http.get(API +'/users')
             .then(function(response) {
@@ -31,7 +26,7 @@ angular.module('myApp.settings', ['ui.router'])
                 console.log('Error al obtener los usuarios: ' + error.data);
             });
 
-        $http.get(API +'/genres')
+        $http.get(API +'/genre')
             .then(function(response) {
                 $scope.genres = response.data;
                 if($scope.genres[0]===null){
@@ -45,9 +40,9 @@ angular.module('myApp.settings', ['ui.router'])
             });
 
         $scope.addGenre = function (genre) {
-            $http.post(API + '/genres/')
+            $http.post(API + '/genre/', genre)
                 .then(function(response) {
-                        $scope.genres = response;
+                        $scope.genres = response.data;
                     }
                     , function (error){
                         console.log('Error: ' + error);
@@ -58,7 +53,7 @@ angular.module('myApp.settings', ['ui.router'])
         $scope.deleteGenre = function (genre) {
             $http.delete(API + '/genre/' + genre._id)
                 .then(function(response) {
-                        $scope.genres = response;
+                        $scope.genres = response.data;
                     }
                     , function (error){
                         console.log('Error: ' + error);
@@ -73,5 +68,26 @@ angular.module('myApp.settings', ['ui.router'])
                     , function (error){
                         console.log('Error: ' + error);
                     });
+        };
+
+        $scope.colors = Object.keys($mdColorPalette);
+
+        $scope.mdURL = 'https://material.google.com/style/color.html#color-color-palette';
+        $scope.primary = 'purple';
+        $scope.accent = 'green';
+
+        $scope.isPrimary = true;
+
+        $scope.selectTheme = function (color) {
+            if ($scope.isPrimary) {
+                $scope.primary = color;
+
+                $scope.isPrimary = false;
+            }
+            else {
+                $scope.accent = color;
+
+                $scope.isPrimary = true;
+            }
         };
     });

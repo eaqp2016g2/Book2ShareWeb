@@ -18,15 +18,17 @@
                 </md-card-title>
                 <md-card-content>
                     <div md-cols-sm="2">
-                        <img src="../../img/accessories-dictionary.svg" class="md-card-image" alt="Portada"
-                             md-colspan-sm="1">
+                        <!--<img src="../../img/accessories-dictionary.svg" class="md-card-image" alt="Portada"
+                             md-colspan-sm="1"> -->
                         <p md-colspan-sm="1">
-                            <!-- Gènere: {{book.description}}    <br> -->
-                            Any: {{book.year}} <br>
+                            Gènere: {{book.genre[0]}}<br>
+                            Any: {{book.year}}<br>
                             Llengua: {{book.language}} <br>
-                            Autor: {{book.author[0]}} <br>
                             Editorial: {{book.editorial}} <br>
                             <!-- Lector actual: {{book.user}}  -->
+
+                            Llibre demanat per:<br>
+                            Botó Accepta
                         </p>
                     </div>
                 </md-card-content>

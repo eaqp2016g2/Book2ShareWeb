@@ -66,14 +66,13 @@ angular.module('myApp.advSearch', ['ngMaterial', 'ui.router'])
         $scope.searchGenre = function () {
             $rootScope.libros={};
              $http({
-                url: API + '/book/search/genre/' + $scope.genre,                
+                url: API + '/book/search/genre/' + $scope.genre,
                 method: "GET",
                 data: $scope.genre
             })
                 .then(function (response) {
-                        if (response.data != null) {   
-
-                            $rootScope.libros = response.data
+                        if (response.data != null) {
+                            $rootScope.libros = response.data;
                             $state.go("results")
                                                       
                         } else {

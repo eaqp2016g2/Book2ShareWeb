@@ -1,65 +1,85 @@
-<h1>
-    Usuari
-</h1>
-<h2>Combinació de colors</h2>
-<h2>Permetre rebre notificacions</h2>
-
-<h1>
-    Administrador
-</h1>
-
-<md-content class="md-padding" layout="column">
-    <h2 class="md-title">Afegeix gèneres literaris</h2>
-    <h3 class="md-title">Gèneres existents</h3>
-    <md-list flex ng-show="genres_exists">
-        <div ng-repeat="genre in genres">
-            <md-list-item href="#" class="md-2-line">
-                <img ng-src="{{genre.img}}" class="md-avatar" alt="{{genre.name}}"/>
-                <div class="md-list-item-text">
-                    <h3>{{genre.name}}</h3>
-                    <h4>{{genre.description}}</h4>
-                </div>
-                <md-button class="md-secondary md-icon-button" ng-click="deleteGenre(genre)" aria-label="Delete">
-                    <img width="24px" src="../../img/user-trash.svg">
-                </md-button>
-            </md-list-item>
-        </div>
-    </md-list>
-
-    <h3 class="md-title">Afegeix un gènere més</h3>
-
-    <form name="genreForm">
-        <md-chips ng-model="ctrl.roFruitNames" name="genreName" readonly="ctrl.readonly"
-                  md-removable="ctrl.removable" md-max-chips="10" placeholder="Introdueix un gènere...">
-            <md-chip-template>
-                <strong>{{$chip}}</strong>
-                <em>(genre)</em>
-            </md-chip-template>
-        </md-chips>
-
-        <div class="errors" ng-messages="genreForm.genreName.$error">
-            <div ng-message="md-max-chips">Maximum number of genres reached.</div>
-        </div>
-    </form>
-</md-content>
-
-<h2>Afegeix punts d'intercanvi</h2>
-
-<a href="#">Aneu a la pàgina</a>
-
-<h2>Esborra comptes d'usuari</h2>
+<div ng-controller="SettingsController" layout="column" ng-cloak>
+    <h1>
+        Usuari
+    </h1>
+    <h2>Combinació de colors</h2>
 <md-content>
-    <md-list flex>
-        <div ng-repeat="user in users">
-            <md-list-item href="#" class="md-2-line">
-                <img ng-src="{{user.avatar}}" class="md-avatar" alt="{{user.name}}"/>
-                <div class="md-list-item-text">
-                    <h3>{{user.name}}</h3>
-                </div>
-                <md-button class="md-secondary md-icon-button" ng-click="deleteUser(user)" aria-label="Delete">
-                    <img width="24px" src="../../img/user-trash.svg">
-                </md-button>
-            </md-list-item>
-        </div>
-    </md-list>
+    <p>
+        Select a color from the <a class="md-accent" href="{{mdURL}}">Theme Color Palettes</a>
+        below:
+    </p>
+    <!-- Theme Options -->
+    <div layout="row" layout-wrap layout-align="center center">
+        <md-button ng-repeat="color in colors" flex-gt-md="15" flex="30"
+                   md-colors="{background: '{{color}}'}" md-colors-watch="false"
+                   ng-disabled="primary === color && !isPrimary" ng-click="selectTheme(color)">
+            {{color}}
+        </md-button>
+    </div>
 </md-content>
+
+    <h2>Permetre rebre notificacions</h2>
+
+    <md-switch ng-model="data.cb1" aria-label="Switch 1">
+        Switch 1: {{ data.cb1 }}
+    </md-switch>
+
+    <h1>
+        Administrador
+    </h1>
+
+    <md-content class="md-padding" layout="column">
+        <h2 class="md-title">Gèneres literaris</h2>
+        <h3 class="md-title">Gèneres existents</h3>
+        <p ng-hide="genres_exists" style="color: red">No hi ha cap gènere encara</p>
+        <md-list flex ng-show="genres_exists">
+            <div ng-repeat="genre in genres">
+                <md-list-item href="#" class="md-2-line">
+                    <img ng-src="{{genre.img}}" class="md-avatar" alt="{{genre.name}}"/>
+                    <div class="md-list-item-text">
+                        <h3>{{genre.name}}</h3>
+                        <h4>{{genre.description}}</h4>
+                    </div>
+                    <md-button class="md-secondary md-icon-button" ng-click="deleteGenre(genre)" aria-label="Delete">
+                        <img width="24px" src="../../img/user-trash.svg">
+                    </md-button>
+                </md-list-item>
+            </div>
+        </md-list>
+
+        <h3 class="md-title">Afegeix un gènere més</h3>
+
+        <form name="genreForm">
+            <md-input-container md-no-float class="md-block">
+                <input ng-model="genre.name" placeholder="Nom">
+            </md-input-container>
+            <md-input-container md-no-float class="md-block">
+                <label>Descripció</label>
+                <textarea ng-model="genre.description" md-maxlength="160" rows="2" md-select-on-focus></textarea>
+            </md-input-container>
+            <md-button ng-click="addGenre(genre)" class="md-raised md-primary">Afegeix</md-button>
+        </form>
+
+    </md-content>
+
+    <h2>Afegeix punts d'intercanvi</h2>
+
+    <a href="#">Aneu a la pàgina</a>
+
+    <h2>Esborra comptes d'usuari</h2>
+    <md-content>
+        <md-list flex>
+            <div ng-repeat="user in users">
+                <md-list-item href="#" class="md-2-line">
+                    <img ng-src="{{user.avatar}}" class="md-avatar" alt="{{user.name}}"/>
+                    <div class="md-list-item-text">
+                        <h3>{{user.name}}</h3>
+                    </div>
+                    <md-button class="md-secondary md-icon-button" ng-click="deleteUser(user)" aria-label="Delete">
+                        <img width="24px" src="../../img/user-trash.svg">
+                    </md-button>
+                </md-list-item>
+            </div>
+        </md-list>
+    </md-content>
+</div>
