@@ -6,25 +6,42 @@ angular.module('myApp.map', ['ui.router', 'ngMap'])
     .config(['$stateProvider', function ($stateProvider) {
         $stateProvider.state('map', {
             url: '/map',
-            templateUrl: 'views/map/map.html',
+            templateUrl: 'views/map/map2.html',
             controller: 'MapController'
         });
     }]).controller('MapController', function (NgMap, $scope, $http) {
     $scope.points = {};
-    $http.get(API + '/loc')
+    $http.get(API + '/intPoints')
         .then(function (response) {
             $scope.points = response.data;
+            console.log("puntos:"+ $scope.points)
         }, function (error) {
-            console.log('Error al obtener los usuarios: ' + error.data);
+            console.log('Error al obtener los puntos: ' + error.data);
         });
+    $scope.searchByPoint = function (id) {
+            //$rootScope.libros={};
+             $http({
+                url: API + '/book/search/point/' + id,                
+                method: "GET",
+                data: $scope.id
+            })
+                .then(function (response) {
+                        if (response.data != null) {   
 
-    var vm = this;
+                            $rootScope.libros = response.data
+                            $state.go("results")
+                                                      
+                        } else {
+                            console.log("No hi ha cap llibre");
+                        }
+                    });
+        }
+    
+    /*var vm = this;
     vm.positions1 =[
         {pos:[40.11, -75.21],name:1}, {pos:[40.22, -75.10],name:2},
         {pos:[40.33, -74.99],name:3}, {pos:[40.44, -74.88],name:4},
         {pos:[40.55, -74.77],name:5}, {pos:[40.66, -74.66],name:6}];
-    console.log(vm.positions1);
-    console.log($scope.points);
 
     vm.setPositions = function (pos) {
         vm.positions = angular.copy(pos);
@@ -40,5 +57,5 @@ angular.module('myApp.map', ['ui.router', 'ngMap'])
         vm.map.customMarkers[vm.currentIndex].addClass('selected');
         vm.currentPosition = vm.positions[vm.currentIndex];
     };
-    console.log(vm);
+    console.log(vm);*/
 });

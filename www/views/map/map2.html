@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+</head>
+<body> 
+  <ng-map default-style="true" center="current-location" zoom="15">
+      <marker ng-repeat="point in points"  on-click="searchByPoint(point._id)" position="[{{point.lat}},{{point.lng}}]" title="{{point.name}}"></marker>
+  </ng-map>
+</body>
+</html>
