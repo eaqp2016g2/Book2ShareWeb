@@ -9,25 +9,34 @@ angular.module('myApp.map', ['ui.router', 'ngMap'])
             templateUrl: 'views/map/map2.html',
             controller: 'MapController'
         });
-    }]).controller('MapController', function (NgMap, $scope, $http) {
-    $scope.points = {};
+    }]).controller('MapController', function (NgMap, $scope, $http, $rootScope, $state) {
+        var vm = this;
+    $scope.points = [];
+
+
     $http.get(API + '/intPoints')
         .then(function (response) {
             $scope.points = response.data;
-            console.log("puntos:"+ $scope.points)
+
+            console.log("MAP CONTROLLER: puntos:", $scope.points)
         }, function (error) {
             console.log('Error al obtener los puntos: ' + error.data);
         });
-    $scope.searchByPoint = function (id) {
-            //$rootScope.libros={};
+
+    $scope.searchByPoint = function (point) {
+
+            console.log("this",this.data);
+
+            $rootScope.libros={};
+            //$scope.point= point;
+            console.log("punto: ", point)           
              $http({
-                url: API + '/book/search/point/' + id,                
-                method: "GET",
-                data: $scope.id
+                url: API + '/book/search/intpoint/' + this.data,                
+                method: "GET"
             })
                 .then(function (response) {
                         if (response.data != null) {   
-
+                            console.log("id: " + this.data);
                             $rootScope.libros = response.data
                             $state.go("results")
                                                       

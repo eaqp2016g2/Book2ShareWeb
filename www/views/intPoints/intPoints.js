@@ -13,14 +13,20 @@ angular.module('myApp.intPoints', ['ui.router', 'ngMaterial', 'ngMap'])
       console.log(map.getCenter().toJSON());     
       
     });*/
+    /*var vm = this;
+  NgMap.getMap().then(function(map) {
+    console.log('map', map);
+    vm.map = map;
+  });*/
 
 NgMap.getMap().then(function(map) {
+    $scope.position={};
 
     map.addListener('click', function(e) {
-       $scope.positionlat= e.latLng.lat();
-       $scope.positionlng= e.latLng.lng();
-        console.log("lat: "+ $scope.positionlat)
-        console.log("lng: "+ $scope.positionlng)
+       $scope.position.lat= e.latLng.lat();
+       $scope.position.lng= e.latLng.lng();
+        console.log("lat: "+ $scope.position.lat)
+        console.log("lng: "+ $scope.position.lng)
   });
     
 });    
