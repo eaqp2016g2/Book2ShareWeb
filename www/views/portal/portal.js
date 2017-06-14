@@ -7,66 +7,17 @@ angular.module('myApp.portal', ['ui.router', 'ngMaterial'])
         $stateProvider.state('portal', {
             url: '/portal',
             templateUrl: 'views/portal/portal.html',
-            controller: 'SubheaderAppCtrl'
+            controller: 'PortalCtrl'
         });
         $mdThemingProvider.theme('altTheme')
             .primaryPalette('purple');
     }])
 
-    .controller('SubheaderAppCtrl', function ($scope, $http) {
+    .controller('PortalCtrl', function ($scope, $http) {
 
         $scope.userdata = JSON.parse(localStorage.getItem("fs_web_userdata"));
         var imagePath = '../img/user-identity.svg';
         $scope.messages = [
-            {
-                face: imagePath,
-                what: 'Brunch this weekend?',
-                who: 'Min Li Chan',
-                when: '3:08PM',
-                notes: " I'll be in your neighborhood doing errands"
-            },
-            {
-                face: imagePath,
-                what: 'Brunch this weekend?',
-                who: 'Min Li Chan',
-                when: '3:08PM',
-                notes: " I'll be in your neighborhood doing errands"
-            },
-            {
-                face: imagePath,
-                what: 'Brunch this weekend?',
-                who: 'Min Li Chan',
-                when: '3:08PM',
-                notes: " I'll be in your neighborhood doing errands"
-            },
-            {
-                face: imagePath,
-                what: 'Brunch this weekend?',
-                who: 'Min Li Chan',
-                when: '3:08PM',
-                notes: " I'll be in your neighborhood doing errands"
-            },
-            {
-                face: imagePath,
-                what: 'Brunch this weekend?',
-                who: 'Min Li Chan',
-                when: '3:08PM',
-                notes: " I'll be in your neighborhood doing errands"
-            },
-            {
-                face: imagePath,
-                what: 'Brunch this weekend?',
-                who: 'Min Li Chan',
-                when: '3:08PM',
-                notes: " I'll be in your neighborhood doing errands"
-            },
-            {
-                face: imagePath,
-                what: 'Brunch this weekend?',
-                who: 'Min Li Chan',
-                when: '3:08PM',
-                notes: " I'll be in your neighborhood doing errands"
-            },
             {
                 face: imagePath,
                 what: 'Brunch this weekend?',

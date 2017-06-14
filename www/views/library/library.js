@@ -32,7 +32,13 @@ angular.module('myApp.library', ['ngMaterial', 'ui.router'])
 
         function orderBooks(books2) {
             for (var book of books2) {
-                book.favorite = $scope.checkFavorite(book._id);
+                $http.get(API + '/book/' + book._id + '/favorite')
+                    .then(function (response) {
+                        book.favorite = response.data;
+                    }, function (error) {
+                        console.log('Error al obtener los usuarios: ' + error.data);
+                    });
+
                 if (angular.isUndefined(book.user)) {
                     book.user = {
                         reader: "0"
@@ -54,25 +60,27 @@ angular.module('myApp.library', ['ngMaterial', 'ui.router'])
         $scope.openChat = function (ev, user_id) {
             $mdDialog.show({
                 controller: DialogController,
-                templateUrl: 'views/messaging/composer.html',
+                templateUrl: 'views/library/composer.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 locals: {dataToPass: user_id},
                 clickOutsideToClose: true,
-                fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+                fullscreen: $scope.customFullscreen
             })
                 .then(function (answer) {
                     $scope.status = 'You said the information was "' + answer + '".';
                 }, function () {
-                    $scope.status = 'You cancelled the dialog.';
+                    $scope.status = 'You cancelled the dialog';
                 });
 
         };
 
+        $scope.destinatari;
+
         function DialogController($scope, $mdDialog, dataToPass) {
 
             if (!angular.isUndefined(dataToPass)) {
-                $scope.newMessage.userB = dataToPass;
+                $scope.destinatari = dataToPass;
             }
 
             $scope.hide = function () {
@@ -88,15 +96,6 @@ angular.module('myApp.library', ['ngMaterial', 'ui.router'])
             };
         }
 
-        $scope.checkFavorite = function (book_id) {
-            $http.get(API + '/book/' + book_id + '/favorite')
-                .then(function (response) {
-                    return response.data;
-                }, function (error) {
-                    console.log('Error al obtener los usuarios: ' + error.data);
-                });
-        };
-
         $scope.markFavorite = function (book) {
             $http({
                 url: API + '/book/' + book._id + "/favorite",
@@ -104,7 +103,7 @@ angular.module('myApp.library', ['ngMaterial', 'ui.router'])
             })
                 .then(function (response) {
                         console.log(response);
-                        $scope.getBooks();
+                        book.favorite = true;
                     },
                     function (error) {
                         console.log(error);
@@ -112,6 +111,7 @@ angular.module('myApp.library', ['ngMaterial', 'ui.router'])
         };
 
         $scope.unmarkFavorite = function (book) {
+            console.log(book);
             $http({
                 url: API + '/book/' + book._id + "/favorite",
                 method: "DELETE"

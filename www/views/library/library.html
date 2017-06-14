@@ -14,63 +14,20 @@
                 </div>
                 <p>{{book.year}}</p>
                 <p>{{book.editorial}}</p>
-                <p>{{book.genre}}</p>
+                <p>{{book.genre[0]}}</p>
                 <div class="md-list-item-text" layout="column">
                     <h4 ng-repeat="user in users | where:{_id: book.propietary}">Propietari: {{user.name}}</h4>
-                    <!-- <h4 ng-repeat="user in users | where:{_id: book.user.reader}">Lector: {{user.name}}</h4> -->
                 </div>
-                <md-button class="md-fab md-primary md-hue-2" ng-click="markFavorite(book)" aria-label="Favorite">
-                    <md-icon md-svg-icon="../../img/ic_favorite_24px.svg"></md-icon>
+                <md-button ng-show="!book.favorite" class="md-fab md-primary md-hue-2" ng-click="markFavorite(book)" aria-label="Favorite">
+                    <md-icon md-svg-icon="../../img/ic_favorite_24px.svg" style="color: white"></md-icon>
                 </md-button>
-                <!-- <md-button class="md-fab md-primary md-hue-2" ng-click="unmarkFavorite(book._id)" aria-label="Favorite">
-                    <md-icon
-                            md-svg-icon="../../img/ic_favorite_24px.svg"></md-icon>
-                </md-button> -->
-                <md-button class="md-fab md-primary md-hue-2" ng-click="openChat(book.propietary)" aria-label="Chat">
-                    <md-icon
-                            md-svg-icon="../../img/ic_comment_24px.svg"></md-icon>
+                <md-button ng-show="book.favorite" class="md-fab md-primary md-hue-2" ng-click="unmarkFavorite(book)" aria-label="Favorite">
+                    <md-icon md-svg-icon="../../img/ic_favorite_24px.svg" style="color: red"></md-icon>
+                </md-button>
+                <md-button class="md-fab md-primary md-hue-2" ng-click="openChat($event,book.propietary)" aria-label="Chat">
+                    <md-icon md-svg-icon="../../img/ic_comment_24px.svg" style="color: white"></md-icon>
                 </md-button>
             </md-list-item>
         </md-list>
     </md-content>
-
-    <!--<div class='md-padding' layout="row" layout-wrap>
-        <md-content>
-            <md-card style="width: 350px;" ng-repeat="book in books">
-                <md-card-header>
-                    <md-card-avatar>
-                        <img class="md-user-avatar" src="../img/user-identity.svg"/>
-                    </md-card-avatar>
-                    <md-card-header-text>
-                        <span class="md-title">{{libro.propietary}}</span>
-                        <span class="md-subhead">{{libro.genre}}</span>
-                    </md-card-header-text>
-                </md-card-header>
-                <img ng-src="../img/descarga.jpe" class="md-card-image" alt="Washed Out">
-                <md-card-title>
-                    <md-card-title-text>
-                        <span class="md-headline">{{libro.title}}</span>
-                        <span class="md-subhead">reversed</span>
-                    </md-card-title-text>
-                </md-card-title>
-                <md-card-actions layout="row" layout-align="start center">
-                    <md-button>Action 1</md-button>
-                    <md-button>Action 2</md-button>
-                    <md-card-icon-actions>
-                        <md-button class="md-icon-button" aria-label="toggle">
-                            <md-icon md-svg-icon="md-toggle-arrow"></md-icon>
-                        </md-button>
-                    </md-card-icon-actions>
-                </md-card-actions>
-                <md-card-content>
-                    <p>
-                        The titles of Washed Out's breakthrough song and the first single from Paracosm share the
-                        two most important words in Ernest Greene's musical language: feel it. It's a simple request, as
-                        well...
-                    </p>
-                </md-card-content>
-            </md-card>
-        </md-content>
-    </div> -->
-
 </div>

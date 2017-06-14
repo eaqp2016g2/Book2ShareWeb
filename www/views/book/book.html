@@ -25,24 +25,18 @@
                             Any: {{book.year}}<br>
                             Llengua: {{book.language}} <br>
                             Editorial: {{book.editorial}} <br>
-                            <!-- Lector actual: {{book.user}}  -->
-
-                            Llibre demanat per:<br>
-                            Botó Accepta
+                        <div ng-repeat="readers in book.user"><b>Llibre demanat per:
+                            <div ng-repeat="user in users | where: {_id : readers.reader}">
+                                {{user.name}}
+                            </div>
+                            </b>
+                            <md-button ng-click="acceptLean(readers.reader,book._id)" class="md-raised md-primary">Accepta</md-button>
+                            <md-button ng-click="denyLean(readers.reader, book._id)" class="md-raised md-primary md-warn">Rebutja</md-button>
+                        <br>
+                        </div>
                         </p>
                     </div>
                 </md-card-content>
-                <md-card-actions layout="row" layout-align="end center">
-                    <md-button class="md-icon-button" aria-label="Favorite">
-                        <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
-                    </md-button>
-                    <md-button class="md-icon-button" aria-label="Settings">
-                        <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
-                    </md-button>
-                    <md-button class="md-icon-button" aria-label="Share">
-                        <md-icon md-svg-icon="img/icons/share-arrow.svg"></md-icon>
-                    </md-button>
-                </md-card-actions>
             </md-card>
             <md-card>
                 <md-card-header>

@@ -67,6 +67,7 @@ angular.module('myApp.messaging', ['ui.router', 'angular.filter', 'ngMaterial'])
 
         console.log(userdata.conversations[0]);
         $scope.finestraxat;
+        $scope.destinatari;
 
         // Obtener todos los usuarios
 

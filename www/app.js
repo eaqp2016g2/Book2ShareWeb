@@ -32,17 +32,18 @@ angular.module('myApp', ['ui.router', 'ngMap', 'myApp.starter', 'myApp.portal', 
                 $state.go("starter")
 
             }
-        }])
-    .config(['$stateProvider', function ($stateProvider) {
-        this.$get = ["$state", function ($state) { //Inject $state here
-            console.log('adios', $state)
-            if (localStorage.getItem('fs_web_token')) {
-                console.log('L\'usuari ha iniciat sessió, redirigint al portal')
-                $state.go("portal")
-            }
-            else {
-                console.log('L\'usuari no ha iniciat sessió');
-                $state.go("starter")
-            }
-        }]
     }]);
+/*
+ .config(['$stateProvider', function ($stateProvider) {
+ this.$get = ["$state", function ($state) { //Inject $state here
+ console.log('adios', $state)
+ if (localStorage.getItem('fs_web_token')) {
+ console.log('L\'usuari ha iniciat sessió, redirigint al portal');
+ $state.go("portal")
+ }
+ else {
+ console.log('L\'usuari no ha iniciat sessió');
+ $state.go("starter")
+ }
+ }]
+ }]);*/

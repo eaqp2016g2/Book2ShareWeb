@@ -1,0 +1,35 @@
+<md-dialog aria-label="Nou missatge" ng-controller="MessagingCtrl" style="
+max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;">
+    <form ng-cloak >
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Nou missatge</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon style="width: 24px; height: 24px" md-svg-src="../img/ic_close_24px.svg"
+                             aria-label="Tanca"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <md-input-container class="md-block" flex-gt-sm>
+                    <div ng-repeat="user in users | where:{_id: destinatari}"><b>Destí</b> {{user.name}}</div>
+                    <input style="display: none;" ng-model="destinatari">
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Missatge</label>
+                    <textarea ng-model="newMessage.content" md-maxlength="1000" rows="5" md-select-on-focus></textarea>
+                </md-input-container>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button ng-click="sendMessage(destinatari)" class="md-raised md-primary">Envia</md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

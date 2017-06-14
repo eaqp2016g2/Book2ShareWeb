@@ -32,7 +32,7 @@ angular.module('myApp.publicar', ['ngMaterial', 'ui.router'])
       };
 
         $scope.publicar = function ($state) {
-            console.log("genre: "+ $scope.book.genre)
+            console.log("genre: "+ $scope.book.genre);
             $scope.book.language=$scope.selectedItem;
             $http({
                 url: API + '/book',
@@ -40,11 +40,12 @@ angular.module('myApp.publicar', ['ngMaterial', 'ui.router'])
                 data: $scope.book
             })
                 .then(function (response) {
-                        if (response.data.success == true) {
+                        if (response.data.success === true) {
                             $scope.book={};
                             //$state.go("library")
                         } else {
                             console.log("Ha fallat la publicació del llibre");
+                            console.log(response);
                         }
                     });
         };

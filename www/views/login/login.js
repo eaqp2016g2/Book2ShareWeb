@@ -2,7 +2,7 @@
  * Created by juan on 10/04/17.
  */
 
-angular.module('myApp.login', ['ngMaterial','ui.router'])
+angular.module('myApp.login', ['ngMaterial', 'ui.router'])
 
     .controller('LoginCtrl', function ($scope, $mdDialog, $http, $window, $rootScope, $state) {
         $scope.status = '  ';
@@ -36,7 +36,7 @@ angular.module('myApp.login', ['ngMaterial','ui.router'])
             };
         }
 
-        $scope.actualUser={};             
+        $scope.actualUser = {};
         $scope.login = function () {
             $http({
                 url: API + '/users/login',
@@ -45,13 +45,14 @@ angular.module('myApp.login', ['ngMaterial','ui.router'])
 
             })
                 .then(function (response) {
-                        if (response.data.success == true) {
+                        if (response.data.success === true) {
                             localStorage.setItem("fs_web_token", response.data.token);
-                            localStorage.setItem("fs_web_userdata", JSON.stringify(response.data.user));                                                                                   
+                            localStorage.setItem("fs_web_userdata", JSON.stringify(response.data.user));
                             $mdDialog.hide();
-                            $state.go("portal")
+                            $state.go("portal");
                             $rootScope.logged = true;
                             $rootScope.userdata = JSON.parse(localStorage.getItem("fs_web_userdata"));
+                            window.location.reload();
                         } else {
                             console.log("Ha fallat l'inici de sessió");
                         }
@@ -61,7 +62,7 @@ angular.module('myApp.login', ['ngMaterial','ui.router'])
                     });
         };
 
-        $scope.logout = function(){
+        $scope.logout = function () {
 
             var data = {
                 user_id: $rootScope.userdata._id,
@@ -73,21 +74,20 @@ angular.module('myApp.login', ['ngMaterial','ui.router'])
                 method: "POST",
                 data: data
             });
-
             localStorage.removeItem("fs_web_token");
             localStorage.removeItem("fs_web_userdata");
             $state.go("starter");
-            $rootScope.userdata={};
-            $rootScope.logged=false;
+            $rootScope.userdata = {};
+            $rootScope.logged = false;
         };
 
-       $scope.searchTitle = function(){
-            $rootScope.title=$scope.title;
-            $scope.title=null;
-            if ($state.includes('finder')==true){
-            $state.go("finder2")
-        }
-            else 
-            $state.go("finder")
+        $scope.searchTitle = function () {
+            $rootScope.title = $scope.title;
+            $scope.title = null;
+            if ($state.includes('finder') === true) {
+                $state.go("finder2")
+            }
+            else
+                $state.go("finder")
         };
     });
