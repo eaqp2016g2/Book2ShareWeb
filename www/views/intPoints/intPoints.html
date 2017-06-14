@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+</head>
+<body>
+  <md-input-container md-no-float class="md-block">
+                <input ng-model="position.name" placeholder="Nombre del punto">
+            </md-input-container>
+      <md-input-container md-no-float class="md-block">
+                <input ng-model="position.lat" placeholder="" + $scope.positionlat>
+      </md-input-container>
+      <md-input-container md-no-float class="md-block">
+                <input ng-model="position.lng" placeholder="" + $scope.positionlng >
+      </md-input-container>
+      <md-card-actions layout="row" layout-align="end center">
+                <md-button ng-click="newPoint()" class="md-raised md-primary">Añadir punto</md-button>
+            </md-card-actions>
+  <ng-map default-style="true" center="current-location" zoom="15">
+  </ng-map>
+</body>
+</html>

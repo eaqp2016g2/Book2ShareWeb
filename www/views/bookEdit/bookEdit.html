@@ -32,6 +32,16 @@
           </md-optgroup>
         </md-select>
       </md-input-container>
+      <md-input-container md-no-float class="md-block">
+        <md-select ng-model="selectedItem2" md-selected-text="getSelectedText2()">
+          <md-optgroup label="intPoints">
+            <md-option ng-value="point" ng-repeat="point in points">{{point.name}}</md-option>
+          </md-optgroup>
+        </md-select>
+      </md-input-container>
+      <md-input-container md-no-float class="md-block">
+                <input ng-model="book.description" placeholder="Description">
+            </md-input-container>
             <!--md-input-container md-no-float class="md-block">
                 <input ng-model="book.language" placeholder="Idioma">
             </md-input-container-->
@@ -43,9 +53,6 @@
             </md-input-container>
             <md-input-container md-no-float class="md-block">
                 <input ng-model="book.editorial" placeholder="Editorial">
-            </md-input-container>
-            <md-input-container md-no-float class="md-block">
-                <input ng-model="book.description" placeholder="Description">
             </md-input-container>
             <md-card-actions layout="row" layout-align="end center">
                 <md-button ng-click="publicar()" class="md-raised md-primary">Confirma</md-button>

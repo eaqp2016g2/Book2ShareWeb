@@ -9,6 +9,15 @@ angular.module('myApp.publicar', ['ngMaterial', 'ui.router'])
     }])
 .controller('publicarCtrl', function ($scope, $http, $state, $rootScope, $element) {
 
+    $scope.points = {};
+    $http.get(API + '/intPoints')
+        .then(function (response) {
+            $scope.points = response.data;
+            console.log("puntos:"+ $scope.points)
+        }, function (error) {
+            console.log('Error al obtener los puntos: ' + error.data);
+        });
+
         $scope.book = {};
         $scope.book.propietary=$rootScope.userdata.name
         console.log('book', $scope.book)
@@ -30,10 +39,19 @@ angular.module('myApp.publicar', ['ngMaterial', 'ui.router'])
           return "Selecciona un idioma";
         }
       };
+      $scope.getSelectedText2 = function() {
+        if ($scope.selectedItem2 !== undefined) {
+          return "Punt d'intercambi: " + $scope.selectedItem2.name;
+        } else {
+          return "Selecciona un punt d'intercambi";
+        }
+      };
 
         $scope.publicar = function ($state) {
             console.log("genre: "+ $scope.book.genre);
             $scope.book.language=$scope.selectedItem;
+            $scope.book.point=$scope.selectedItem2._id;
+            console.log("id: "+ $scope.book.point)
             $http({
                 url: API + '/book',
                 method: "POST",
@@ -42,6 +60,8 @@ angular.module('myApp.publicar', ['ngMaterial', 'ui.router'])
                 .then(function (response) {
                         if (response.data.success === true) {
                             $scope.book={};
+                            $scope.selectedItem=undefined;
+                            $scope.selectedItem2=undefined;
                             //$state.go("library")
                         } else {
                             console.log("Ha fallat la publicació del llibre");
