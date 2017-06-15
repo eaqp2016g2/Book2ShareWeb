@@ -45,9 +45,10 @@
                 <li class="list-group-item">Titol: {{book.title}}</li>
                 <li class="list-group-item">Gènere: {{book.genre}}</li>
                 <li class="list-group-item">Idioma: {{book.language}}</li>
-                <li class="list-group-item">Autor: {{book.author}}</li>
-                <li class="list-group-item">Propietari: {{book.propietary}}</li>
+                <li class="list-group-item">Autor: {{book.author[0]}}</li>
+                <li class="list-group-item"ng-repeat="user in users | where:{_id: book.propietary}">Propietari: {{user.name}}</li>
                 <li class="list-group-item">Descripció: {{book.description}}</li>
+                <li class="list-group-item" ng-repeat="point in points | where:{_id: book.point}">Punt: {{point.name}}</li>
             </ul>
 
             <br><br>
