@@ -18,6 +18,16 @@ angular.module('myApp.library', ['ngMaterial', 'ui.router'])
                 console.log('Error al obtener los usuarios: ' + error.data);
             });
 
+            $http.get(API + '/intPoints')
+            .then(function (response) {
+                $scope.points = response.data;
+                console.log("points: ", $scope.points)
+                //$scope.getBooks();
+            }, function (error) {
+                console.log('Error al obtener los usuarios: ' + error.data);
+            });
+
+
         // Obtener todos los libros
 
         $scope.getBooks = function (){
