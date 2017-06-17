@@ -7,7 +7,7 @@
     "type": "git",
     "url": "git+https://github.com/eaqp2016g2/Book2ShareWeb.git"
   },
-  "author": ["Jonathan Collado", "Joan Jerez", "Sergi Galcerán", "Iván González"],
+  "author": "EA Grup 2",
   "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/eaqp2016g2/Book2ShareWeb/issues"
@@ -26,5 +26,6 @@
     "postinstall": "bower install",
     "prestart": "npm install",
     "start": "http-server -a localhost -p 8000 -c-1 ./www"
-  }
+  },
+  "dependencies": {}
 }

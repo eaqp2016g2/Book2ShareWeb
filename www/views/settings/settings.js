@@ -16,8 +16,6 @@ angular.module('myApp.settings', ['ui.router', 'ngMaterial'])
     .controller('SettingsController', function ($scope, $http, $mdColorPalette) {
 
         $scope.users = {};
-        $scope.genres = {};
-        $scope.genre = {};
 
         $http.get(API +'/users')
             .then(function(response) {
@@ -25,40 +23,6 @@ angular.module('myApp.settings', ['ui.router', 'ngMaterial'])
             }, function (error){
                 console.log('Error al obtener los usuarios: ' + error.data);
             });
-
-        $http.get(API +'/genre')
-            .then(function(response) {
-                $scope.genres = response.data;
-                if($scope.genres[0]===null){
-                    $scope.genres_exists=false;
-                }
-                else{
-                    $scope.genres_exists=true;
-                }
-            }, function (error){
-                console.log('Error al obtener los géneros: ' + error.data);
-            });
-
-        $scope.addGenre = function (genre) {
-            $http.post(API + '/genre/', genre)
-                .then(function(response) {
-                        $scope.genres = response.data;
-                    }
-                    , function (error){
-                        console.log('Error: ' + error);
-                    });
-
-        };
-
-        $scope.deleteGenre = function (genre) {
-            $http.delete(API + '/genre/' + genre._id)
-                .then(function(response) {
-                        $scope.genres = response.data;
-                    }
-                    , function (error){
-                        console.log('Error: ' + error);
-                    });
-        };
 
         $scope.deleteUser = function (user) {
                 $http.delete(API + '/admin/' + user._id)

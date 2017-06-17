@@ -1,11 +1,30 @@
-<div class="row">
+<div class="row" ng-controller="PortalCtrl">
     <div class="col-md-6">
         <md-toolbar md-scroll-shrink>
             <div class="md-toolbar-tools">Perfil</div>
         </md-toolbar>
+        <md-content>
+            <div class="row">
+                <img ng-src="{{imagePath}}">
+                <ul class="list-group">
+                    <li class="list-group-item">Nom: {{userdata.name}}</li>
+                    <li class="list-group-item">Correu: {{userdata.email}}</li>
+                    <li class="list-group-item">Nombre de llibres compartits:</li>
+                    <li class="list-group-item">Sexe: {{userdata.sex}}</li>
+                </ul>
+            </div>
+        </md-content>
+
+
+        <md-toolbar md-scroll-shrink>
+            <div class="md-toolbar-tools">Punts d'intercanvi</div>
+        </md-toolbar>
+        <md-content>
+            Mapa
+        </md-content>
     </div>
     <div class="col-md-6">
-       <div ng-controller="PortalCtrl" layout="column" flex layout-fill ng-cloak>
+        <div layout="column" flex layout-fill ng-cloak>
 
             <md-toolbar md-scroll-shrink>
                 <div class="md-toolbar-tools">Últims llibres publicats</div>
@@ -15,13 +34,13 @@
 
                 <section>
                     <md-list layout-padding>
-                        <md-list-item class="md-3-line" ng-repeat="message in messages">
-                            <img ng-src="{{message.face}}" class="md-avatar" alt="{{message.who}}">
+                        <md-list-item class="md-3-line" ng-repeat="book in books">
+                            <img ng-src="img/accessories-dictionary.svg" class="md-avatar" alt="{{book.author[0]}}">
                             <div class="md-list-item-text">
-                                <h3>{{message.what}}</h3>
-                                <h4>{{message.who}}</h4>
+                                <h3>{{book.title}}</h3>
+                                <h4>{{book.author[0]}}</h4>
                                 <p>
-                                    {{message.notes}}
+                                    {{book.year}}
                                 </p>
                             </div>
                         </md-list-item>

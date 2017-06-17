@@ -13,38 +13,16 @@ angular.module('myApp.portal', ['ui.router', 'ngMaterial'])
             .primaryPalette('purple');
     }])
 
-    .controller('PortalCtrl', function ($scope, $http) {
+    .controller('PortalCtrl', function ($scope, $http, $rootScope) {
 
         $scope.userdata = JSON.parse(localStorage.getItem("fs_web_userdata"));
-        var imagePath = '../img/user-identity.svg';
-        $scope.messages = [
-            {
-                face: imagePath,
-                what: 'Brunch this weekend?',
-                who: 'Min Li Chan',
-                when: '3:08PM',
-                notes: " I'll be in your neighborhood doing errands"
-            },
-            {
-                face: imagePath,
-                what: 'Brunch this weekend?',
-                who: 'Min Li Chan',
-                when: '3:08PM',
-                notes: " I'll be in your neighborhood doing errands"
-            },
-            {
-                face: imagePath,
-                what: 'Brunch this weekend?',
-                who: 'Min Li Chan',
-                when: '3:08PM',
-                notes: " I'll be in your neighborhood doing errands"
-            },
-            {
-                face: imagePath,
-                what: 'Brunch this weekend?',
-                who: 'Min Li Chan',
-                when: '3:08PM',
-                notes: " I'll be in your neighborhood doing errands"
-            }
-        ];
+        $scope.imagePath = '/img/user-identity.svg';
+
+        $http.get(API +'/books/user/'+ $rootScope.userdata._id)
+            .then(function(response) {
+                $scope.books = response.data;
+            }, function (error){
+                console.log('Error al obtener los libros: ' + error.data);
+            });
+
     });

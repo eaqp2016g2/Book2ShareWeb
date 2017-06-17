@@ -19,8 +19,8 @@ angular.module('myApp.publicar', ['ngMaterial', 'ui.router'])
         });
 
         $scope.book = {};
-        $scope.book.propietary=$rootScope.userdata.name
-        console.log('book', $scope.book)
+        $scope.book.propietary=$rootScope.userdata.name;
+        console.log('book', $scope.book);
         $scope.genres = ["Fantasia", "Terror", "Juvenil", "Romantico", "Otros"];
         $scope.languages = ["Catala", "Castella", "Anglès"];
          $scope.clearSearchTerm = function() {

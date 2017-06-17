@@ -17,18 +17,20 @@ angular.module('myApp.register', ['ui.router', 'ui.validate'])
                 console.log('Error al obtener los usuarios: ' + error.data);
             });
         $scope.newUser = {};
+
         $scope.doesNotExist = function (value) {
             console.log($scope.users);
             return $q(function (resolve, reject) {
+                var notexists;
                 for (const user of $scope.users) {
                     console.log(user.email + "/" + value);
                     if (user.email === value) {
-                        var notexists = false;
+                        notexists = false;
                         reject();
                         break;
                     }
                     else {
-                        var notexists = true;
+                        notexists = true;
                     }
                 }
                 if (notexists) {
@@ -45,7 +47,7 @@ angular.module('myApp.register', ['ui.router', 'ui.validate'])
                     data: $scope.newUser
                 })
                     .then(function (response) {
-                            if (response.data.success == true) {
+                            if (response.data.success === true) {
                                 localStorage.setItem("fs_web_token", response.data.token);
                                 localStorage.setItem("fs_web_userdata", JSON.stringify(response.data.user));
                                 $state.go("portal")

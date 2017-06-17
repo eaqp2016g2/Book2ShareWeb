@@ -14,13 +14,8 @@ angular.module('myApp.messaging', ['ui.router', 'angular.filter', 'ngMaterial'])
     .controller('MessagingCtrl', function ($rootScope, $scope, $http, $filter, $mdDialog) {
 
         $scope.check = function(user){
-            if(user._id===$rootScope.userdata._id){
-                return true;
-            }
-            else{
-                return false;
-            }
-        }
+            return user._id === $rootScope.userdata._id;
+        };
 
         var userdata = JSON.parse(localStorage.getItem("fs_web_userdata"));
         $scope.conversations = userdata.conversations;
@@ -66,8 +61,8 @@ angular.module('myApp.messaging', ['ui.router', 'angular.filter', 'ngMaterial'])
         }
 
         console.log(userdata.conversations[0]);
-        $scope.finestraxat;
-        $scope.destinatari;
+        $scope.finestraxat = {};
+        $scope.destinatari = {};
 
         // Obtener todos los usuarios
 
@@ -138,7 +133,7 @@ angular.module('myApp.messaging', ['ui.router', 'angular.filter', 'ngMaterial'])
         $scope.newMessage={};
 
         $scope.sendMessage = function (destinatari) {
-            if (($scope.newMessage.content != "") && ($scope.newMessage.content)) {
+            if (($scope.newMessage.content !== "") && ($scope.newMessage.content)) {
                 //$scope.newMessage.userA = userdata._id;
                 $scope.newMessage.userB = destinatari;
                 $http({

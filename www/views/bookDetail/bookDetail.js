@@ -11,4 +11,4 @@ angular.module('myApp.bookDetail', ['ngMaterial', 'ui.router'])
         $scope.book=$rootScope.booksel;
         $rootScope.booksel={};
 
-    })
+    });
