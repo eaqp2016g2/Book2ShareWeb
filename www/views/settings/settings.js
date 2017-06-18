@@ -13,7 +13,7 @@ angular.module('myApp.settings', ['ui.router', 'ngMaterial'])
     .config(['$mdIconProvider', function($mdIconProvider) {
         $mdIconProvider.icon('md-close', '../../img/ic_close_24px.svg', 24);
     }])
-    .controller('SettingsController', function ($scope, $http, $mdColorPalette) {
+    .controller('SettingsController', function ($scope, $http) {
 
         $scope.users = {};
 
@@ -23,6 +23,19 @@ angular.module('myApp.settings', ['ui.router', 'ngMaterial'])
             }, function (error){
                 console.log('Error al obtener los usuarios: ' + error.data);
             });
+
+        $scope.data = {};
+        $scope.data.cb1 = true;
+
+        $scope.notifications = function (bool){
+            console.log("ENTRA?");
+                $http.put(API + '/notifications/' + bool)
+                    .then(function (response){
+                        console.log(response);
+                    }, function (error) {
+                        console.log('Error: ' + error);
+                    });
+        };
 
         $scope.deleteUser = function (user) {
                 $http.delete(API + '/admin/' + user._id)
@@ -34,24 +47,5 @@ angular.module('myApp.settings', ['ui.router', 'ngMaterial'])
                     });
         };
 
-        $scope.colors = Object.keys($mdColorPalette);
 
-        $scope.mdURL = 'https://material.google.com/style/color.html#color-color-palette';
-        $scope.primary = 'purple';
-        $scope.accent = 'green';
-
-        $scope.isPrimary = true;
-
-        $scope.selectTheme = function (color) {
-            if ($scope.isPrimary) {
-                $scope.primary = color;
-
-                $scope.isPrimary = false;
-            }
-            else {
-                $scope.accent = color;
-
-                $scope.isPrimary = true;
-            }
-        };
     });

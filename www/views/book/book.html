@@ -18,14 +18,12 @@
                 </md-card-title>
                 <md-card-content>
                     <div md-cols-sm="2">
-                        <!--<img src="../../img/accessories-dictionary.svg" class="md-card-image" alt="Portada"
-                             md-colspan-sm="1"> -->
                         <p md-colspan-sm="1">
                             Gènere: {{book.genre[0]}}<br>
                             Any: {{book.year}}<br>
                             Llengua: {{book.language}} <br>
                             Editorial: {{book.editorial}} <br>
-                        <div ng-repeat="readers in book.user"><b>Llibre demanat per:
+                        <div ng-repeat="readers in book.user | where: {approved: false}"><b>Llibre demanat per:
                             <div ng-repeat="user in users | where: {_id : readers.reader}">
                                 {{user.name}}
                             </div>

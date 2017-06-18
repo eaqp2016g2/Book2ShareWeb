@@ -1,5 +1,6 @@
 <header id="mu-header" ng-controller="LoginCtrl" ng-cloak>
-    <md-toolbar class="md-hue-2">
+    <div ng-controller="HeaderCtrl">
+    <md-toolbar md-colors="{background: '{{primary}}'}" class="md-hue-2">
         <div class="md-toolbar-tools">
 
             <img class="md-icon-button" aria-label="Book2Share" src="img/kthesaurus.svg" height="48px">
@@ -21,7 +22,7 @@
                     margin-top:60px;
                 }
             </style>
-            <div ng-controller="HeaderCtrl">
+            <div>
                 <md-menu>
                 <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
                 <img ng-show="logged" src="img/preferences-desktop-notification-bell.svg"
@@ -29,13 +30,12 @@
                 </img>
                 </md-button>
                     <md-menu-content width="6">
-                        <md-menu-item ng-repeat="item in userdata.notifications">
-                            <md-button ng-click="ctrl.announceClick($index)">
+                        <md-menu-item ng-repeat="item in user.notifications">
+                            <md-button ng-click="markRead(item._id)" ui-sref="{{item.link}}">
                                 <div layout="row">
                                     <p flex>
-                                        <a href="{{item.link}}">
-                                        <img src="{{item.icon}}" height="24px">
-                                        {{item.message}}</a>
+                                        <img ng-src="{{item.icon}}" height="24px">
+                                        {{item.message}}
                                     </p>
                                 </div>
                             </md-button>
@@ -54,4 +54,5 @@
             </md-button>
         </div>
     </md-toolbar>
+    </div>
 </header>

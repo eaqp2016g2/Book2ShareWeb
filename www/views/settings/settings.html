@@ -1,12 +1,14 @@
 <div ng-controller="SettingsController" layout="column" ng-cloak>
+    <div id="user">
     <h1>
         Usuari
     </h1>
+        <div ng-controller="HeaderCtrl">
     <h2>Combinació de colors</h2>
 <md-content>
     <p>
-        Select a color from the <a class="md-accent" href="{{mdURL}}">Theme Color Palettes</a>
-        below:
+        Selecciona un color des de les <a class="md-accent" href="{{mdURL}}">paletes de tema de color</a>
+        inferiors:
     </p>
     <!-- Theme Options -->
     <div layout="row" layout-wrap layout-align="center center">
@@ -17,13 +19,16 @@
         </md-button>
     </div>
 </md-content>
+        </div>
 
     <h2>Permetre rebre notificacions</h2>
 
-    <md-switch ng-model="data.cb1" aria-label="Activa">
+    <md-switch ng-model="data.cb1" aria-label="Notificacions"
+               ng-change="notifications(data.cb1)">
         Notificacions: {{ data.cb1 }}
     </md-switch>
-
+    </div>
+    <div id="admin">
     <h1>
         Administrador
     </h1>
@@ -48,4 +53,5 @@
             </div>
         </md-list>
     </md-content>
+    </div>
 </div>

@@ -14,18 +14,18 @@
                 </div>
                 <p>{{book.year}}</p>
                 <p>{{book.editorial}}</p>
-                Genere:<p ng-repeat="gen in book.genre">{{gen}}</p>
+                Gènere:<p ng-repeat="gen in book.genre">{{gen}}</p>
                 <div class="md-list-item-text" layout="column">
                     <h4 ng-repeat="user in users | where:{_id: book.propietary}">Propietari: {{user.name}}</h4>
                     <h4 ng-repeat="point in points | where:{_id: book.point}">Punt: {{point.name}}</h4>
                 </div>
-                <md-button ng-show="!book.favorite" class="md-fab md-primary md-hue-2" ng-click="markFavorite(book)" aria-label="Favorite">
+                <md-button ng-disabled="book.propietary === userdata._id" ng-show="!book.favorite" class="md-fab md-primary md-hue-2" ng-click="markFavorite(book)" aria-label="Favorite">
                     <md-icon md-svg-icon="../../img/ic_favorite_24px.svg" style="color: white"></md-icon>
                 </md-button>
-                <md-button ng-show="book.favorite" class="md-fab md-primary md-hue-2" ng-click="unmarkFavorite(book)" aria-label="Favorite">
+                <md-button ng-disabled="book.propietary === userdata._id" ng-show="book.favorite" class="md-fab md-primary md-hue-2" ng-click="unmarkFavorite(book)" aria-label="Favorite">
                     <md-icon md-svg-icon="../../img/ic_favorite_24px.svg" style="color: red"></md-icon>
                 </md-button>
-                <md-button class="md-fab md-primary md-hue-2" ng-click="openChat($event,book.propietary)" aria-label="Chat">
+                <md-button ng-disabled="book.propietary === userdata._id" class="md-fab md-primary md-hue-2" ng-click="openChat($event,book.propietary)" aria-label="Chat">
                     <md-icon md-svg-icon="../../img/ic_comment_24px.svg" style="color: white"></md-icon>
                 </md-button>
             </md-list-item>

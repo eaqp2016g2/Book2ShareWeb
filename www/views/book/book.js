@@ -30,7 +30,7 @@ angular.module('myApp.book', ['ui.router', 'ngMaterial'])
             });
     }
 
-    /*** KO ***/
+    /*** OK ***/
 
     $scope.acceptLean = function (user_id, book_id){
         $http.put(API + '/book/' + book_id + '/lean/' + user_id)
