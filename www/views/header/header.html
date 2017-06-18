@@ -1,13 +1,10 @@
 <header id="mu-header" ng-controller="LoginCtrl" ng-cloak>
     <md-toolbar class="md-hue-2">
         <div class="md-toolbar-tools">
-            <img class="md-icon-button" aria-label="Settings" src="img/kthesaurus.svg" height="48px">
 
+            <img class="md-icon-button" aria-label="Book2Share" src="img/kthesaurus.svg" height="48px">
             <h2 flex md-truncate><a ui-sref="portal">Book2Share</a></h2>
 
-            <!-- <md-button class="md-icon-button" aria-label="Favorite">
-                <md-icon md-svg-icon="img/icons/favorite.svg" style="color: greenyellow;"></md-icon>
-            </md-button> -->
             <form class="navbar-form" role="search">
                 <div class="input-group">
                     <input type="text" class="form-control" ng-model="title" placeholder="Search" name="search">
@@ -32,11 +29,14 @@
                 </img>
                 </md-button>
                     <md-menu-content width="6">
-                        <md-menu-item ng-repeat="item in [1, 2, 3]">
+                        <md-menu-item ng-repeat="item in userdata.notifications">
                             <md-button ng-click="ctrl.announceClick($index)">
                                 <div layout="row">
-                                    <p flex="">Option {{item}}</p>
-                                    <!--<md-icon md-svg-icon="call:portable-wifi-off" style="margin: auto 3px auto 0;"></md-icon> -->
+                                    <p flex>
+                                        <a href="{{item.link}}">
+                                        <img src="{{item.icon}}" height="24px">
+                                        {{item.message}}</a>
+                                    </p>
                                 </div>
                             </md-button>
                         </md-menu-item>

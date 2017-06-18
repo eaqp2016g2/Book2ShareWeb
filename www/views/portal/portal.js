@@ -2,7 +2,7 @@
  * Created by juan on 30/03/17.
  */
 
-angular.module('myApp.portal', ['ui.router', 'ngMaterial'])
+angular.module('myApp.portal', ['ui.router', 'ngMaterial', 'angular.filter'])
     .config(['$stateProvider', '$mdThemingProvider', function ($stateProvider, $mdThemingProvider) {
         $stateProvider.state('portal', {
             url: '/portal',
@@ -18,7 +18,7 @@ angular.module('myApp.portal', ['ui.router', 'ngMaterial'])
         $scope.userdata = JSON.parse(localStorage.getItem("fs_web_userdata"));
         $scope.imagePath = '/img/user-identity.svg';
 
-        $http.get(API +'/books/user/'+ $rootScope.userdata._id)
+        $http.get(API +'/book')
             .then(function(response) {
                 $scope.books = response.data;
             }, function (error){
