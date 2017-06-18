@@ -3,7 +3,7 @@ var API = "http://localhost:3001/api";
 angular.module('myApp', ['ui.router', 'ngMap', 'myApp.starter', 'myApp.portal', 'myApp.book',
     'myApp.login', 'myApp.register', 'myApp.library', 'myApp.profile', 'myApp.sidenav',
     'myApp.map', 'myApp.book', 'myApp.review', 'myApp.messaging', 'myApp.settings', 'myApp.publicar',
-    'myApp.bookFinder', 'myApp.bookFinder2', 'myApp.advSearch', 'myApp.results', 'myApp.bookDetail', 'myApp.intPoints'])
+    'myApp.bookFinder', 'myApp.bookFinder2', 'myApp.header', 'myApp.advSearch', 'myApp.results', 'myApp.bookDetail', 'myApp.intPoints'])
 
     .factory('api', function ($http) {
         return {

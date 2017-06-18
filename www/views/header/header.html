@@ -1,34 +1,57 @@
 <header id="mu-header" ng-controller="LoginCtrl" ng-cloak>
     <md-toolbar class="md-hue-2">
         <div class="md-toolbar-tools">
-            <md-button class="md-icon-button" aria-label="Settings">
-            </md-button>
+            <img class="md-icon-button" aria-label="Settings" src="img/kthesaurus.svg" height="48px">
 
-            <h2 flex md-truncate ><a ui-sref="portal">Book2Share</a></h2>
+            <h2 flex md-truncate><a ui-sref="portal">Book2Share</a></h2>
 
             <!-- <md-button class="md-icon-button" aria-label="Favorite">
                 <md-icon md-svg-icon="img/icons/favorite.svg" style="color: greenyellow;"></md-icon>
             </md-button> -->
             <form class="navbar-form" role="search">
-        <div class="input-group">
-            <input type="text" class="form-control" ng-model="title" placeholder="Search" name="search">
-            <div class="input-group-btn">
-                <button class="btn btn-default" ng-click="searchTitle()" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                <div class="input-group">
+                    <input type="text" class="form-control" ng-model="title" placeholder="Search" name="search">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" ng-click="searchTitle()" type="submit"><i
+                                class="glyphicon glyphicon-search"></i></button>
+                    </div>
+                </div>
+            </form>
+            <style>
+                #menu_container_0 {
+                    background-color:red;
+                    position: absolute;
+                    margin-top:60px;
+                }
+            </style>
+            <div ng-controller="HeaderCtrl">
+                <md-menu>
+                <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                <img ng-show="logged" src="img/preferences-desktop-notification-bell.svg"
+                      height="32px">
+                </img>
+                </md-button>
+                    <md-menu-content width="6">
+                        <md-menu-item ng-repeat="item in [1, 2, 3]">
+                            <md-button ng-click="ctrl.announceClick($index)">
+                                <div layout="row">
+                                    <p flex="">Option {{item}}</p>
+                                    <!--<md-icon md-svg-icon="call:portable-wifi-off" style="margin: auto 3px auto 0;"></md-icon> -->
+                                </div>
+                            </md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
             </div>
-        </div>
-        </form>
             <md-button ng-hide="logged" href="#" ng-click="showAdvanced($event)" aria-label="Inicia sessió">
                 Inicia sessió
             </md-button>
             <md-button ng-href="#!/register" aria-label="Registra" ng-hide="logged">
                 Registra
-            </md-button>            
+            </md-button>
             <md-button ng-hide="!logged" href="#" ng-click="logout()" aria-label="Tanca sessió">
                 Tanca sessió
             </md-button>
-            <!-- <md-button class="md-icon-button" aria-label="More">
-                <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
-            </md-button> -->
         </div>
     </md-toolbar>
 </header>

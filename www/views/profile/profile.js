@@ -21,8 +21,17 @@ angular.module('myApp.profile', ['ngMaterial', 'ui.router', 'ui.validate'])
 
         $scope.editUser = function (newUser) {
             $http.put(API+'/users/'+$scope.userdata._id, newUser).then(function(response) {
-                $scope.newUser = response.data;
-                console.log(response.data);
+
+                $scope.newUser = {
+                    name: response.data.name,
+                    email: response.data.email,
+                    sex: response.data.sex,
+                    birthday: response.data.birthday,
+                    biography: response.data.biography
+                };
+                console.log($scope.newUser);
+            }, function (error) {
+                console.log('Error al editar el usuario: ' + error.data);
             });
         }
 
