@@ -3,17 +3,20 @@
  */
 
 angular.module('myApp.header', ['ngMaterial', 'ngMessages'])
-    .controller('HeaderCtrl', function DemoCtrl($mdDialog, $http, $scope, $mdColorPalette, $mdMenu, $interval) {
+    .controller('HeaderCtrl', function DemoCtrl($mdDialog, $http, $scope,
+                                                $mdColorPalette, $mdMenu, $interval, $rootScope) {
         var originatorEv;
 
-        var userdata = JSON.parse(localStorage.getItem("fs_web_userdata"));
+
+        if($rootScope.logged) {
+            var userdata = JSON.parse(localStorage.getItem("fs_web_userdata"));
+
+            $interval(function() {
+                getNotifications(userdata._id);
+            }, 60*10*1000);
+        }
 
         $scope.user = {};
-
-        $interval(function() {
-            getNotifications(userdata._id);
-        }, 60*10*1000);
-
 
         function getNotifications(user_id) {
             $http.get(API + '/users/' + user_id)
