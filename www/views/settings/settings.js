@@ -15,7 +15,20 @@ angular.module('myApp.settings', ['ui.router', 'ngMaterial'])
     }])
     .controller('SettingsController', function ($scope, $http) {
 
+        var userdata = JSON.parse(localStorage.getItem("fs_web_userdata"));
+
         $scope.users = {};
+
+        $scope.user = {};
+
+        $http.get(API + '/users/' + userdata._id)
+            .then(function (response) {
+                $scope.user = response.data;
+                console.log($scope.user.settings.allow_notifications);
+                $scope.data.cb1 = $scope.user.settings.allow_notifications;
+            }, function (error) {
+                console.log('Error al obtener el usuario: ' + error.data);
+            });
 
         $http.get(API +'/users')
             .then(function(response) {
@@ -25,13 +38,15 @@ angular.module('myApp.settings', ['ui.router', 'ngMaterial'])
             });
 
         $scope.data = {};
-        $scope.data.cb1 = true;
 
         $scope.notifications = function (bool){
             console.log("ENTRA?");
                 $http.put(API + '/notifications/' + bool)
                     .then(function (response){
                         console.log(response);
+                        $scope.data.cb1 = bool;
+                        $scope.user.settings.allow_notifications = bool;
+                        window.location.reload();
                     }, function (error) {
                         console.log('Error: ' + error);
                     });

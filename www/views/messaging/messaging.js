@@ -11,22 +11,22 @@ angular.module('myApp.messaging', ['ui.router', 'angular.filter', 'ngMaterial'])
             controller: 'MessagingCtrl'
         });
     }])
-    .controller('MessagingCtrl', function ($rootScope, $scope, $http, $filter, $mdDialog) {
+    .controller('MessagingCtrl', function ($rootScope, $scope, $http, $filter, $mdDialog, $interval) {
 
-        $scope.check = function(user){
+        $scope.check = function (user) {
             return user._id === $rootScope.userdata._id;
         };
 
         var userdata = JSON.parse(localStorage.getItem("fs_web_userdata"));
         $scope.conversations = userdata.conversations;
 
-        $scope.refreshConversations = function(user_id){
-            $http.get(API +'/conversations/' + user_id)
-                .then(function(response) {
+        $scope.refreshConversations = function (user_id) {
+            $http.get(API + '/conversations/' + user_id)
+                .then(function (response) {
                     localStorage.setItem("fs_web_userdata", JSON.stringify(response.data.user));
                     userdata = JSON.parse(localStorage.getItem("fs_web_userdata"));
                     $scope.conversations = userdata.conversations;
-                }, function (error){
+                }, function (error) {
                     console.log('Error al obtener el usuario: ' + error.data);
                 });
         };
@@ -66,29 +66,42 @@ angular.module('myApp.messaging', ['ui.router', 'angular.filter', 'ngMaterial'])
 
         // Obtener todos los usuarios
 
-        $http.get(API +'/users')
-            .then(function(response) {
+        $http.get(API + '/users')
+            .then(function (response) {
                 $scope.users = response.data;
-                if(userdata.conversations[0] !== undefined) {
+                if (userdata.conversations[0] !== undefined) {
                     console.log("Conversations not null");
-                    $scope.finestraxat=true;
+                    $scope.finestraxat = true;
                     $scope.getMessages(userdata.conversations[0]);
                 }
-                else{
+                else {
                     console.log("Conversations null");
-                    $scope.finestraxat=false;
+                    $scope.finestraxat = false;
                 }
-            }, function (error){
+            }, function (error) {
                 console.log('Error al obtener los usuarios: ' + error.data);
             });
 
         // Seleccionar conversa
 
         $scope.selectConversation = function (user) {
-                $scope.selected = true;
-                $scope.getMessages(user._id);
-                console.log($scope.selected);
+
+            $scope.selected = true;
+            $interval(function () {
+                try{
+                    $scope.getMessages(user._id);
+                    console.log("refresca mensajes")
+                }
+                catch(err){
+                    console.log(err);
+                }
+            }, 3000);
+            //$scope.getMessages(user._id);
+
+            console.log($scope.selected);
         };
+
+
 
         // Obtener todos los mensajes de un usuario determinado
 
@@ -109,14 +122,14 @@ angular.module('myApp.messaging', ['ui.router', 'angular.filter', 'ngMaterial'])
                 for (var message of conversation) {
                     if (message.userA === userdata._id) {
                         message.send = "message sent";
-                        if(message.read === true){
-                            message.tick= "../../img/msg-dblcheck-ack.svg";
+                        if (message.read === true) {
+                            message.tick = "../../img/msg-dblcheck-ack.svg";
                         }
-                        else{
-                            if(message.delivered === true){
+                        else {
+                            if (message.delivered === true) {
                                 message.tick = "../../img/msg-dblcheck.svg";
                             }
-                            else{
+                            else {
                                 message.tick = "../../img/msg-check.svg";
                             }
                         }
@@ -127,10 +140,11 @@ angular.module('myApp.messaging', ['ui.router', 'angular.filter', 'ngMaterial'])
                 }
                 return conversation;
             }
+
             return $scope.conversation2;
         };
 
-        $scope.newMessage={};
+        $scope.newMessage = {};
 
         $scope.sendMessage = function (destinatari) {
             if (($scope.newMessage.content !== "") && ($scope.newMessage.content)) {
@@ -148,7 +162,7 @@ angular.module('myApp.messaging', ['ui.router', 'angular.filter', 'ngMaterial'])
                             $scope.getMessages(destinatari);
                         },
                         function () {
-             //               toastr.error('Error a l\'enviar el missatge');
+                            //               toastr.error('Error a l\'enviar el missatge');
                         });
             }
             $mdDialog.cancel();

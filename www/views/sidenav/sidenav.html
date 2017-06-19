@@ -43,12 +43,13 @@
             </md-list-item>
 
             <!-- Acceso al mapa -->
-            <md-list-item class="md-1-line" ui-sref="intPoints">
+            <md-list-item ng-show="userdata.admin" class="md-1-line" ui-sref="intPoints">
                 <img src="../../img/hisc-app-marble.svg" class="md-avatar" alt="map">
                 <div class="md-list-item-text">
-                    <h4>Mapa Admin</h4>
+                    <h4>Punts d'intercanvi</h4>
                 </div>
             </md-list-item>
+
             <md-list-item class="md-1-line" ui-sref="map">
                 <img src="../../img/hisc-app-marble.svg" class="md-avatar" alt="map">
                 <div class="md-list-item-text">

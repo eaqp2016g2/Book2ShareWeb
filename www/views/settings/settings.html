@@ -1,5 +1,5 @@
 <div ng-controller="SettingsController" layout="column" ng-cloak>
-    <div id="user">
+    <div id="user" ng-show="!userdata.admin">
     <h1>
         Usuari
     </h1>
@@ -28,7 +28,7 @@
         Notificacions: {{ data.cb1 }}
     </md-switch>
     </div>
-    <div id="admin">
+    <div id="admin" ng-show="userdata.admin">
     <h1>
         Administrador
     </h1>

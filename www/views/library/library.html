@@ -5,7 +5,7 @@
             <md-subheader class="md-no-sticky">La biblioteca</md-subheader>
             <md-button md-no-ink class="md-primary" ng-click="campo=title" ng-model="campo" value="title">Nom</md-button>
             <md-button md-no-ink class="md-primary" ng-click="campo=year" ng-model="campo" value="year">Any de publicació</md-button>
-            <md-list-item class="md-3-line" ng-repeat="book in books2 | orderBy:'title'" ng-click="searchBook(book)">
+            <md-list-item class="md-3-line" ng-repeat="book in books2 | orderBy: 'title'" ng-click="searchBook(book)">
                 <img src="../../img/kthesaurus.svg" class="md-avatar"/>
                 <div class="md-list-item-text" layout="column">
                     <h3>{{ book.title }}</h3>
@@ -22,8 +22,11 @@
                 <md-button ng-disabled="book.propietary === userdata._id" ng-show="!book.favorite" class="md-fab md-primary md-hue-2" ng-click="markFavorite(book)" aria-label="Favorite">
                     <md-icon md-svg-icon="../../img/ic_favorite_24px.svg" style="color: white"></md-icon>
                 </md-button>
-                <md-button ng-disabled="book.propietary === userdata._id" ng-show="book.favorite" class="md-fab md-primary md-hue-2" ng-click="unmarkFavorite(book)" aria-label="Favorite">
+                <md-button ng-disabled="book.propietary === userdata._id" ng-show="book.favorite && !book.approved" class="md-fab md-primary md-hue-2" ng-click="unmarkFavorite(book)" aria-label="Favorite">
                     <md-icon md-svg-icon="../../img/ic_favorite_24px.svg" style="color: red"></md-icon>
+                </md-button>
+                <md-button ng-disabled="book.propietary === userdata._id" ng-show="book.favorite && book.approved" class="md-fab md-primary md-hue-2" ng-click="unmarkFavorite(book)" aria-label="Favorite">
+                    <md-icon md-svg-icon="../../img/ic_favorite_24px.svg" style="color: lightgreen"></md-icon>
                 </md-button>
                 <md-button ng-disabled="book.propietary === userdata._id" class="md-fab md-primary md-hue-2" ng-click="openChat($event,book.propietary)" aria-label="Chat">
                     <md-icon md-svg-icon="../../img/ic_comment_24px.svg" style="color: white"></md-icon>

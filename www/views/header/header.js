@@ -3,22 +3,30 @@
  */
 
 angular.module('myApp.header', ['ngMaterial', 'ngMessages'])
-    .controller('HeaderCtrl', function DemoCtrl($mdDialog, $http, $scope, $mdColorPalette) {
+    .controller('HeaderCtrl', function DemoCtrl($mdDialog, $http, $scope, $mdColorPalette, $mdMenu, $interval) {
         var originatorEv;
 
         var userdata = JSON.parse(localStorage.getItem("fs_web_userdata"));
 
         $scope.user = {};
 
-        getNotifications(userdata._id);
+        $interval(function() {
+            getNotifications(userdata._id);
+        }, 60*10*1000);
+
 
         function getNotifications(user_id) {
             $http.get(API + '/users/' + user_id)
                 .then(function (response) {
                     $scope.user = response.data;
-                    $scope.primary = $scope.user.settings.colour.primario;
-                    $scope.accent = $scope.user.settings.colour.secundario;
-                    console.log($scope.user.notifications);
+                    try {
+                        $scope.primary = $scope.user.settings.colour.primario;
+                        $scope.accent = $scope.user.settings.colour.secundario;
+                    }
+                    catch(err){
+                        console.log(err);
+                    }
+                    console.log($scope.user.settings.allow_notifications);
                 }, function (error) {
                     console.log('Error al obtener el usuario: ' + error.data);
                 });
@@ -30,7 +38,7 @@ angular.module('myApp.header', ['ngMaterial', 'ngMessages'])
                     console.log(response);
                     getNotifications(userdata._id);
                 }, function (err) {
-                    console.log('Error' + error.data);
+                    console.log('Error' + err.data);
                 });
         };
 
@@ -53,13 +61,15 @@ angular.module('myApp.header', ['ngMaterial', 'ngMessages'])
         $scope.colors = Object.keys($mdColorPalette);
 
         $scope.mdURL = 'https://material.google.com/style/color.html#color-color-palette';
+
         $scope.primary = 'blue';
+        $scope.accent = 'cyan';
 
         $scope.isPrimary = true;
 
         $scope.selectTheme = function (color) {
             if ($scope.isPrimary) {
-                $scope.primary2 = color;
+                $scope.primary = color;
                 $scope.isPrimary = false;
             }
             else {
@@ -81,5 +91,7 @@ angular.module('myApp.header', ['ngMaterial', 'ngMessages'])
                 }, function (error) {
                     console.log('Error: ' + error);
                 });
+
+            window.location.reload();
         };
     });

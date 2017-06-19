@@ -1,10 +1,9 @@
 <header id="mu-header" ng-controller="LoginCtrl" ng-cloak>
-    <div ng-controller="HeaderCtrl">
-    <md-toolbar md-colors="{background: '{{primary}}'}" class="md-hue-2">
+    <md-toolbar ng-controller="HeaderCtrl" md-colors="{background: '{{primary}}'}" class="md-hue-2">
         <div class="md-toolbar-tools">
 
             <img class="md-icon-button" aria-label="Book2Share" src="img/kthesaurus.svg" height="48px">
-            <h2 flex md-truncate><a ui-sref="portal">Book2Share</a></h2>
+            <h2 flex md-truncate><a ui-sref="starter">Book2Share</a></h2>
 
             <form class="navbar-form" role="search">
                 <div class="input-group">
@@ -22,15 +21,15 @@
                     margin-top:60px;
                 }
             </style>
-            <div>
+            <div ng-controller="SettingsController" ng-show="data.cb1">
                 <md-menu>
-                <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdMenu.open($event)">
                 <img ng-show="logged" src="img/preferences-desktop-notification-bell.svg"
                       height="32px">
                 </img>
                 </md-button>
                     <md-menu-content width="6">
-                        <md-menu-item ng-repeat="item in user.notifications">
+                        <md-menu-item ng-repeat="item in user.notifications | limitTo: 10">
                             <md-button ng-click="markRead(item._id)" ui-sref="{{item.link}}">
                                 <div layout="row">
                                     <p flex>
@@ -54,5 +53,4 @@
             </md-button>
         </div>
     </md-toolbar>
-    </div>
 </header>

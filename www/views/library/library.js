@@ -41,10 +41,12 @@ angular.module('myApp.library', ['ngMaterial', 'ui.router'])
         };
 
         function orderBooks(books2) {
-            for (var book of books2) {
+            for (let book of books2) {
                 $http.get(API + '/book/' + book._id + '/favorite')
                     .then(function (response) {
-                        book.favorite = response.data;
+                        book.favorite = response.data.favorite;
+                        book.approved = response.data.approved;
+                        console.log(book._id + book.favorite + book.approved);
                     }, function (error) {
                         console.log('Error al obtener los usuarios: ' + error.data);
                     });
@@ -85,7 +87,7 @@ angular.module('myApp.library', ['ngMaterial', 'ui.router'])
 
         };
 
-        $scope.destinatari;
+        $scope.destinatari = {};
 
         function DialogController($scope, $mdDialog, dataToPass) {
 

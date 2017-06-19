@@ -9,7 +9,7 @@ angular.module('myApp.register', ['ui.router', 'ui.validate'])
             controller: 'RegisterController'
         });
     }])
-    .controller('RegisterController', function ($scope, $http, $state, $q) {
+    .controller('RegisterController', function ($scope, $http, $state, $q, $rootScope) {
         $http.get(API + '/users')
             .then(function (response) {
                 $scope.users = response.data;
@@ -50,7 +50,9 @@ angular.module('myApp.register', ['ui.router', 'ui.validate'])
                             if (response.data.success === true) {
                                 localStorage.setItem("fs_web_token", response.data.token);
                                 localStorage.setItem("fs_web_userdata", JSON.stringify(response.data.user));
-                                $state.go("portal")
+                                $state.go("starter");
+                                $rootScope.userdata = JSON.parse(localStorage.getItem("fs_web_userdata"));
+                                window.location.reload();
                             } else {
                                 console.log("Ha fallat l'inici de sessió");
                             }
